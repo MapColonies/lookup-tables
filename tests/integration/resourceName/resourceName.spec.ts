@@ -4,7 +4,7 @@ import httpStatusCodes from 'http-status-codes';
 
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
-import { ISecretListModel } from '../../../src/SecretList/models/SecretListManager';
+import { ICountry } from '../../../src/models';
 import { SecretListRequestSender } from './helpers/requestSender';
 
 describe('SecretList', function () {
@@ -22,20 +22,12 @@ describe('SecretList', function () {
 
   describe('Happy Path', function () {
     it('should return 200 status code and the resource', async function () {
-      const response = await requestSender.getResource();
+      const response = await requestSender.getCountryList();
+      const resourceList = response.body as ICountry[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
 
-      const resource = response.body as ISecretListModel;
-      expect(response).toSatisfyApiSpec();
-      expect(resource.id).toBe(1);
-      expect(resource.name).toBe('ronin');
-      expect(resource.description).toBe('can you do a logistics run?');
-    });
-    it('should return 200 status code and create the resource', async function () {
-      const response = await requestSender.createResource();
-
-      expect(response.status).toBe(httpStatusCodes.CREATED);
+      expect(resourceList.length).toBeDefined();
     });
   });
   describe('Bad Path', function () {

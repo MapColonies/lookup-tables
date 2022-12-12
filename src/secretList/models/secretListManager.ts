@@ -9,14 +9,14 @@ export class SecretListManager {
   public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
 
   public getCountryList(): ICountry[] {
-    const countryFilePath = '../db/country.json';
-    const classificationList: ICountry[] = this.getListFromFile(countryFilePath);
+    const COUNTRY_FILE_PATH = `${process.cwd()}${'/db/country.json'}`;
+    const classificationList: ICountry[] = this.getListFromFile(COUNTRY_FILE_PATH);
     return classificationList;
   }
 
   public getClassificationList(): IClassification[] {
-    const classificationFilePath = '../db/classification.json';
-    const classificationList: IClassification[] = this.getListFromFile(classificationFilePath);
+    const CLASSIFICATION_FILE_PATH = `${process.cwd()}${'/db/classification.json'}`;
+    const classificationList: IClassification[] = this.getListFromFile(CLASSIFICATION_FILE_PATH);
     return classificationList;
   }
 
