@@ -1,59 +1,68 @@
 openapi: 3.0.1
 info:
-  title: service-name
-  description: basic template for map colonies service
+  title: secret-list
+  description: Service which serve secret list data like countries, clasiification, etc.
   version: 1.0.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 paths:
-  /anotherResource:
+  /country:
     get:
-      operationId: getAnotherResource
+      operationId: getCountryList
       tags:
-        - anotherResource
-      summary: gets the resource
+        - getCountryList
+      summary: get country list
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/anotherResource'
-  /resourceName:
+                $ref: '#/components/schemas/countryList'
+  /classification:
     get:
-      operationId: getResourceName
+      operationId: getClassificationList
       tags:
-        - resourceName
-      summary: gets the resource
+        - getClassificationList
+      summary: get classification list
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resource'
-    post:
-      operationId: createResource
-      tags:
-        - resourceName
-      summary: creates a new record of type resource
-      responses:
-        201:
-          description: created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/resource'
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+                $ref: '#/components/schemas/classificationList'
 components:
   schemas:
+    country:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: number
+          format: int64
+        name:
+          type: string
+    countryList:
+      type: array
+      items:
+        $ref: '#/components/schemas/country'
+    classification:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: number
+          format: int64
+        name:
+          type: string
+    classificationList:
+      type: array
+      items:
+        $ref: '#/components/schemas/classification'
     error:
       type: object
       required:
@@ -61,27 +70,3 @@ components:
       properties:
         message:
           type: string
-    resource:
-      type: object
-      required:
-        - id
-        - name
-        - description
-      properties:
-        id:
-          type: number
-          format: int64
-        name:
-          type: string
-        description:
-          type: string
-    anotherResource:
-      type: object
-      required:
-        - kind
-        - isAlive
-      properties:
-        kind:
-          type: string
-        isAlive:
-          type: boolean

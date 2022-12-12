@@ -4,10 +4,10 @@ import httpStatusCodes from 'http-status-codes';
 
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
-import { IResourceNameModel } from '../../../src/resourceName/models/resourceNameManager';
+import { ISecretListModel } from '../../../src/SecretList/models/SecretListManager';
 import { DocsRequestSender } from './helpers/docsRequestSender';
 
-describe('resourceName', function () {
+describe('SecretList', function () {
   let requestSender: DocsRequestSender;
   beforeEach(function () {
     const app = getApp({

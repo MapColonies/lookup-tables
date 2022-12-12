@@ -1,13 +1,13 @@
 import * as supertest from 'supertest';
 
-export class ResourceNameRequestSender {
+export class SecretListRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getResource(): Promise<supertest.Response> {
-    return supertest.agent(this.app).get('/resourceName').set('Content-Type', 'application/json');
+    return supertest.agent(this.app).get('/SecretList').set('Content-Type', 'application/json');
   }
 
   public async createResource(): Promise<supertest.Response> {
-    return supertest.agent(this.app).post('/resourceName').set('Content-Type', 'application/json');
+    return supertest.agent(this.app).post('/SecretList').set('Content-Type', 'application/json');
   }
 }
