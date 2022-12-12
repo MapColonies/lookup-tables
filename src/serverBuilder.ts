@@ -38,7 +38,7 @@ export class ServerBuilder {
   }
 
   private buildRoutes(): void {
-    this.serverInstance.use('/secretList', this.secretListRouter);
+    this.serverInstance.use('/', this.secretListRouter);
     this.buildDocsRoutes();
   }
 
