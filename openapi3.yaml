@@ -20,6 +20,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/countryList'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
   /classification:
     get:
       operationId: getClassificationList
@@ -33,6 +45,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/classificationList'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
 components:
   schemas:
     country:
