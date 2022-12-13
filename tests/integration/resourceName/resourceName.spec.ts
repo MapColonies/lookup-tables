@@ -5,10 +5,10 @@ import httpStatusCodes from 'http-status-codes';
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
 import { IClassification, ICountry } from '../../../src/models';
-import { SecretListRequestSender } from './helpers/requestSender';
+import { DiscreteValuesRequestSender } from './helpers/requestSender';
 
-describe('SecretList', function () {
-  let requestSender: SecretListRequestSender;
+describe('discreteValues', function () {
+  let requestSender: DiscreteValuesRequestSender;
   beforeEach(function () {
     const app = getApp({
       override: [
@@ -17,7 +17,7 @@ describe('SecretList', function () {
       ],
       useChild: true,
     });
-    requestSender = new SecretListRequestSender(app);
+    requestSender = new DiscreteValuesRequestSender(app);
   });
 
   describe('Happy Path', function () {

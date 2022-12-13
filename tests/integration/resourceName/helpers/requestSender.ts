@@ -1,6 +1,6 @@
 import * as supertest from 'supertest';
 
-export class SecretListRequestSender {
+export class DiscreteValuesRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getCountryList(): Promise<supertest.Response> {

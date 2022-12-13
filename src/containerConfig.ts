@@ -6,7 +6,7 @@ import jsLogger, { LoggerOptions } from '@map-colonies/js-logger';
 import { Metrics } from '@map-colonies/telemetry';
 import { SERVICES, SERVICE_NAME } from './common/constants';
 import { tracing } from './common/tracing';
-import { secretListRouterFactory, SECRET_LIST_ROUTER_SYMBOL } from './secretList/routes/secretListRouter';
+import { discreteValuesRouterFactory, DISCRETE_VALUES_ROUTER_SYMBOL } from './discreteValues/routes/discreteValuesRouter';
 import { InjectionObject, registerDependencies } from './common/dependencyRegistration';
 
 export interface RegisterOptions {
@@ -30,7 +30,7 @@ export const registerExternalValues = (options?: RegisterOptions): DependencyCon
     { token: SERVICES.LOGGER, provider: { useValue: logger } },
     { token: SERVICES.TRACER, provider: { useValue: tracer } },
     { token: SERVICES.METER, provider: { useValue: meter } },
-    { token: SECRET_LIST_ROUTER_SYMBOL, provider: { useFactory: secretListRouterFactory } },
+    { token: DISCRETE_VALUES_ROUTER_SYMBOL, provider: { useFactory: discreteValuesRouterFactory } },
     {
       token: 'onSignal',
       provider: {

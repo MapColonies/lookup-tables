@@ -9,7 +9,7 @@ import { Logger } from '@map-colonies/js-logger';
 import httpLogger from '@map-colonies/express-access-log-middleware';
 import { SERVICES } from './common/constants';
 import { IConfig } from './common/interfaces';
-import { SECRET_LIST_ROUTER_SYMBOL } from './secretList/routes/secretListRouter';
+import { DISCRETE_VALUES_ROUTER_SYMBOL } from './discreteValues/routes/discreteValuesRouter';
 
 @injectable()
 export class ServerBuilder {
@@ -18,7 +18,7 @@ export class ServerBuilder {
   public constructor(
     @inject(SERVICES.CONFIG) private readonly config: IConfig,
     @inject(SERVICES.LOGGER) private readonly logger: Logger,
-    @inject(SECRET_LIST_ROUTER_SYMBOL) private readonly secretListRouter: Router
+    @inject(DISCRETE_VALUES_ROUTER_SYMBOL) private readonly discreteValuesRouter: Router
   ) {
     this.serverInstance = express();
   }
@@ -38,7 +38,7 @@ export class ServerBuilder {
   }
 
   private buildRoutes(): void {
-    this.serverInstance.use('/', this.secretListRouter);
+    this.serverInstance.use('/', this.discreteValuesRouter);
     this.buildDocsRoutes();
   }
 

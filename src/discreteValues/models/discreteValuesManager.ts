@@ -5,7 +5,7 @@ import { SERVICES } from '../../common/constants';
 import { IClassification, ICountry } from '../../models';
 
 @injectable()
-export class SecretListManager {
+export class DiscreteValuesManager {
   public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
 
   public getCountryList(): ICountry[] {

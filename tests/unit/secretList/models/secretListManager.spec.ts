@@ -1,24 +1,24 @@
 import jsLogger from '@map-colonies/js-logger';
-import { SecretListManager } from '../../../../src/secretList/models/secretListManager';
+import { DiscreteValuesManager } from '../../../../src/discreteValues/models/discreteValuesManager';
 import { ICountry, IClassification } from '../../../../src/models';
 
-let secretListManager: SecretListManager;
+let discreteValuesManager: DiscreteValuesManager;
 
-describe('#SecretListManager', () => {
+describe('#DiscreteValuesManager', () => {
   beforeAll(() => {
-    secretListManager = new SecretListManager(jsLogger({ enabled: false }));
+    discreteValuesManager = new DiscreteValuesManager(jsLogger({ enabled: false }));
   });
 
   describe('#getCountryList', () => {
     it('When we ask for country list, it return us the country list', () => {
-      const countryList: ICountry[] = secretListManager.getCountryList();
+      const countryList: ICountry[] = discreteValuesManager.getCountryList();
       expect(countryList).toBeDefined();
     });
   });
 
   describe('#getClassificationList', () => {
     it('When we ask for country list, it return us the country list', () => {
-      const classificationList: IClassification[] = secretListManager.getClassificationList();
+      const classificationList: IClassification[] = discreteValuesManager.getClassificationList();
       expect(classificationList).toBeDefined();
     });
   });
