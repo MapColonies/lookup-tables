@@ -4,7 +4,7 @@ import httpStatusCodes from 'http-status-codes';
 
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
-import { ICountry } from '../../../src/models';
+import { IClassification, ICountry } from '../../../src/models';
 import { SecretListRequestSender } from './helpers/requestSender';
 
 describe('SecretList', function () {
@@ -21,18 +21,27 @@ describe('SecretList', function () {
   });
 
   describe('Happy Path', function () {
-    it('should return 200 status code and the resource', async function () {
+    it('should return 200 status code and the country list', async function () {
       const response = await requestSender.getCountryList();
-      const resourceList = response.body as ICountry[];
+      const countryList = response.body as ICountry[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
+      expect(countryList.length).toBeDefined();
+    });
 
-      expect(resourceList.length).toBeDefined();
+    it('should return 200 status code and the classification list', async function () {
+      const response = await requestSender.getClassificationList();
+      const classificationList = response.body as IClassification[];
+
+      expect(response.status).toBe(httpStatusCodes.OK);
+      expect(classificationList.length).toBeDefined();
     });
   });
+
   describe('Bad Path', function () {
     // All requests with status code of 400
   });
+  
   describe('Sad Path', function () {
     // All requests with status code 4XX-5XX
   });
