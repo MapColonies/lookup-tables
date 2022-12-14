@@ -11,7 +11,7 @@ describe('#DiscreteValuesManager', () => {
 
   describe('#getCountryList', () => {
     it('When we ask for country list, it return us the country list', () => {
-      const countryList: ICountry[] = discreteValuesManager.getCountryList();
+      const countryList: ICountry[] | Partial<ICountry>[] = discreteValuesManager.getCountryList();
       expect(countryList).toBeDefined();
     });
   });

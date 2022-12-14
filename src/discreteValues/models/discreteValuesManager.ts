@@ -1,26 +1,45 @@
 import fs from 'fs';
+import path from 'path';
 import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
 import { IClassification, ICountry } from '../../models';
+import { CountryField } from '../interfaces/interfaces';
+
+const COUNTRY_FILE_PATH = path.resolve(__dirname, "../../../db/country.json");
+const CLASSIFICATION_FILE_PATH = path.resolve(__dirname, "../../../db/classification.json");
 
 @injectable()
 export class DiscreteValuesManager {
   public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
 
-  public getCountryList(): ICountry[] {
-    const COUNTRY_FILE_PATH = `${process.cwd()}${'/db/country.json'}`;
-    const classificationList: ICountry[] = this.getListFromFile(COUNTRY_FILE_PATH);
-    return classificationList;
-  }
-
   public getClassificationList(): IClassification[] {
-    const CLASSIFICATION_FILE_PATH = `${process.cwd()}${'/db/classification.json'}`;
-    const classificationList: IClassification[] = this.getListFromFile(CLASSIFICATION_FILE_PATH);
+    const classificationList: IClassification[] = this.readListFromFile(CLASSIFICATION_FILE_PATH);
+    this.logger.debug({ msg: 'fetch classification', classificationList });
     return classificationList;
   }
 
-  private getListFromFile<T>(filePath: string): T[] {
+  public getCountryList(): ICountry[] {
+    this.logger.debug({ msg: 'fetch country list' });
+    const countryList: ICountry[] = this.readListFromFile(COUNTRY_FILE_PATH);
+    return countryList;
+  }
+
+  public getCountryListExcludeFields(excludeFields: CountryField[]): ICountry[] {
+    this.logger.debug({ msg: 'fetch country list with exclude fields', excludeFields });
+    const countryList: ICountry[] = this.getCountryList();
+    const partialCountryList: ICountry[] = this.filterCountryFields(countryList, excludeFields)
+    return partialCountryList;
+  }
+
+  private filterCountryFields(countryList: ICountry[], excludeFields: CountryField[]): ICountry[] {
+    return countryList.map(country => {
+      excludeFields.forEach(field => delete country[field]);
+      return country;
+    });
+  }
+
+  private readListFromFile<T>(filePath: string): T[] {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const list: T[] = JSON.parse(fileContent) as T[];
     return list;

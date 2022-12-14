@@ -8,6 +8,7 @@ const discreteValuesRouterFactory: FactoryFunction<Router> = (dependencyContaine
 
   router.get('/country', controller.getCountryList);
   router.get('/classification', controller.getClassificationList);
+  router.post('/country/excludeFields', controller.getCountryListExcludeFields);
 
   return router;
 };

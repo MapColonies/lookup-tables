@@ -32,6 +32,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+  /country/excludeFields:
+    post:
+      operationId: getCountryListExcludeFields
+      tags:
+        - GetCountryListExcludeFields
+      summary: get country list and exclude fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                $ref: '#/components/schemas/countryField'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/countryList'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
   /classification:
     get:
       operationId: getClassificationList
@@ -73,6 +105,9 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/country'
+    countryField:
+        type: string
+        enum: [code, name]
     classification:
       type: object
       required:
