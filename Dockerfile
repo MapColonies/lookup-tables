@@ -18,7 +18,7 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
 RUN npm ci --only=production
 COPY --chown=node:node --from=build /tmp/buildApp/dist .
-COPY --chown=node:node --from=assets /tmp/assets/discrete-values-assets ./db
+COPY --chown=node:node --from=assets /tmp/assets/discrete-values-assets ./values
 COPY --chown=node:node ./config ./config
 USER node
 EXPOSE 8080

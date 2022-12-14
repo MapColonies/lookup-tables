@@ -6,8 +6,8 @@ import { SERVICES } from '../../common/constants';
 import { IClassification, ICountry } from '../../models';
 import { CountryField } from '../interfaces/interfaces';
 
-const COUNTRY_FILE_PATH = path.resolve(__dirname, "../../../db/country.json");
-const CLASSIFICATION_FILE_PATH = path.resolve(__dirname, "../../../db/classification.json");
+const COUNTRY_FILE_PATH = path.resolve(__dirname, "../../values/country.json");
+const CLASSIFICATION_FILE_PATH = path.resolve(__dirname, "../../values/classification.json");
 
 @injectable()
 export class DiscreteValuesManager {
@@ -40,6 +40,7 @@ export class DiscreteValuesManager {
   }
 
   private readListFromFile<T>(filePath: string): T[] {
+    this.logger.debug({ msg: 'Try to read file', filePath });
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const list: T[] = JSON.parse(fileContent) as T[];
     return list;
