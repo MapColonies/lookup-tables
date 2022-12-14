@@ -18,9 +18,13 @@
     "prebuild": "npm run clean",
     "build": "tsc --project tsconfig.build.json && npm run assets:copy",
     "start": "npm run build && cd dist && node ./index.js",
-    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist",
+    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles ./db/* ./dist",
     "clean": "rimraf dist",
-    "install": "npx husky install"
+    "install": "npx husky install",
+    "docker-run": "sudo docker run -p 8080:8080 discrete-values:v1.0.0",
+    "docker-build": "sudo docker build . -t discrete-values:v1.0.0",
+    "docker-upload": "sudo docker tag discrete-values:v1.0.0 acrarolibotnonprod.azurecr.io/discrete-values:v1.0.0 && sudo docker push acrarolibotnonprod.azurecr.io/discrete-values:v1.0.0",
+    "docker-save": "sudo docker save -o ./discrete-values.tar discrete-values:v1.0.0"
   },
   "directories": {
     "test": "tests"

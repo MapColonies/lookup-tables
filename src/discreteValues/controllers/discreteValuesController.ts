@@ -1,5 +1,4 @@
 import { Logger } from '@map-colonies/js-logger';
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
 import { RequestHandler } from 'express';
 import httpStatus from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
@@ -21,6 +20,7 @@ export class DiscreteValuesController {
 
   public getCountryList: GetCountryHandler = (req, res, next) => {
     let countryList;
+
     try {
       countryList = this.manager.getCountryList();
       return res.status(httpStatus.OK).json(countryList);
