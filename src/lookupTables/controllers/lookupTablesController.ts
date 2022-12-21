@@ -3,19 +3,19 @@ import { RequestHandler } from 'express';
 import httpStatus from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
-import { IClassification, ICountry } from '../../models';
-import { CountryField, CountryParams } from '../interfaces/interfaces';
-import { DiscreteValuesManager } from '../models/discreteValuesManager';
+import { IClassificationOption, ICountryOption } from '../../lookup-models';
+import { CountryOptionalField, CountryParams } from '../../lookup-models/country';
+import { LookupTablesManager } from '../models/lookupTablesManager';
 
-type GetCountryHandler = RequestHandler<CountryParams, ICountry[] | Partial<ICountry>[]>;
-type GetClassificationHandler = RequestHandler<undefined, IClassification[]>;
-type GetCountryListExcludeFieldsHandler = RequestHandler<undefined, ICountry[], CountryField[]>;
+type GetCountryHandler = RequestHandler<undefined, ICountryOption[]>;
+type GetClassificationHandler = RequestHandler<undefined, IClassificationOption[]>;
+type GetCountryListExcludeFieldsHandler = RequestHandler<undefined, ICountryOption[], CountryParams>;
 
 @injectable()
-export class DiscreteValuesController {
+export class LookupTablesController {
   public constructor(
     @inject(SERVICES.LOGGER) private readonly logger: Logger,
-    @inject(DiscreteValuesManager) private readonly manager: DiscreteValuesManager
+    @inject(LookupTablesManager) private readonly manager: LookupTablesManager
   ) { }
 
   public getCountryList: GetCountryHandler = (req, res, next) => {
@@ -32,7 +32,8 @@ export class DiscreteValuesController {
 
   public getCountryListExcludeFields: GetCountryListExcludeFieldsHandler = (req, res, next) => {
     let countryList;
-    const excludeFields: CountryField[] = req.body;
+    const countryParams: CountryParams = req.body;
+    const excludeFields: CountryOptionalField[] = countryParams.excludeFields;
 
     try {
       countryList = this.manager.getCountryListExcludeFields(excludeFields);

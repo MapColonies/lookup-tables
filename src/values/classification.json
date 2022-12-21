@@ -1,14 +1,13 @@
-[
-  {
-    "id": 1,
-    "name": "מסווג"
-  },
-  {
-    "id": 2,
-    "name": "שמור"
-  },
-  {
-    "id": 3,
-    "name": "בלמ'ס"
-  }
+[{
+  "value": 1,
+  "translationCode": "lookupTable.classification.classified"
+},
+{
+  "value": 2,
+  "translationCode": "lookupTable.classification.balmas"
+},
+{
+  "value": 3,
+  "translationCode": "lookupTable.classification.superClassified"
+}
 ]

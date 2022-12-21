@@ -6,7 +6,7 @@ import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
 import { DocsRequestSender } from './helpers/docsRequestSender';
 
-describe('discreteValues', function () {
+describe('lookupTables', function () {
   let requestSender: DocsRequestSender;
   beforeEach(function () {
     const app = getApp({

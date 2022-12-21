@@ -1,6 +1,6 @@
 import * as supertest from 'supertest';
 
-export class DiscreteValuesRequestSender {
+export class LookupTablesRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getCountryList(): Promise<supertest.Response> {

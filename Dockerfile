@@ -2,7 +2,7 @@ FROM ubuntu:latest as assets
 WORKDIR /tmp/assets
 RUN apt-get -y update
 RUN apt-get -y install git
-RUN git clone https://github.com/ronnahom96/discrete-values-assets.git
+RUN git clone https://github.com/ronnahom96/lookup-tables-assets.git
 
 FROM node:16 as build
 WORKDIR /tmp/buildApp
@@ -18,7 +18,7 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
 RUN npm ci --only=production
 COPY --chown=node:node --from=build /tmp/buildApp/dist .
-COPY --chown=node:node --from=assets /tmp/assets/discrete-values-assets ./values
+COPY --chown=node:node --from=assets /tmp/assets/lookup-tables-assets ./values
 COPY --chown=node:node ./config ./config
 USER node
 EXPOSE 8080

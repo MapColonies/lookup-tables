@@ -4,11 +4,11 @@ import httpStatusCodes from 'http-status-codes';
 
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
-import { IClassification, ICountry } from '../../../src/models';
-import { DiscreteValuesRequestSender } from './helpers/requestSender';
+import { IClassificationOption, ICountryOption } from '../../../src/lookup-models';
+import { LookupTablesRequestSender } from './helpers/requestSender';
 
-describe('discreteValues', function () {
-  let requestSender: DiscreteValuesRequestSender;
+describe('lookupTables', function () {
+  let requestSender: LookupTablesRequestSender;
   beforeEach(function () {
     const app = getApp({
       override: [
@@ -17,13 +17,13 @@ describe('discreteValues', function () {
       ],
       useChild: true,
     });
-    requestSender = new DiscreteValuesRequestSender(app);
+    requestSender = new LookupTablesRequestSender(app);
   });
 
   describe('Happy Path', function () {
     it('should return 200 status code and the country list', async function () {
       const response = await requestSender.getCountryList();
-      const countryList = response.body as ICountry[];
+      const countryList = response.body as ICountryOption[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
       expect(countryList.length).toBeDefined();
@@ -31,7 +31,7 @@ describe('discreteValues', function () {
 
     it('should return 200 status code and the classification list', async function () {
       const response = await requestSender.getClassificationList();
-      const classificationList = response.body as IClassification[];
+      const classificationList = response.body as IClassificationOption[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
       expect(classificationList.length).toBeDefined();

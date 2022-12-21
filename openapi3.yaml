@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: secret-list
+  title: lookup-tables
   description: Service which serve secret list data like countries, clasiification, etc.
   version: 1.0.0
   license:
