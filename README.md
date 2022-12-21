@@ -2,7 +2,7 @@
 
 ----------------------------------
 
-This is a basic repo template for building new MapColonies web services in Typescript.
+This is a lookup table service which serve configuration close lists building with Nodejs and Typscript.
 
 ### Template Features:
 
