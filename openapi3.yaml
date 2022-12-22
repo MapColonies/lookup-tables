@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: lookup-tables
-  description: Service which serve secret list data like countries, clasiification, etc.
+  description: Service which serve secret list data like countries, classification, etc.
   version: 1.0.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 paths:
-  /country:
+  /lookup-tables/country:
     get:
       operationId: getCountryList
       tags:
@@ -32,7 +32,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /country/excludeFields:
+  /lookup-tables/country/excludeFields:
     post:
       operationId: getCountryListExcludeFields
       tags:
@@ -64,7 +64,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /classification:
+  /lookup-tables/classification:
     get:
       operationId: getClassificationList
       tags:
