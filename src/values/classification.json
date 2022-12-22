@@ -1,13 +1,14 @@
-[{
-  "value": 1,
-  "translationCode": "lookupTable.classification.classified"
-},
-{
-  "value": 2,
-  "translationCode": "lookupTable.classification.balmas"
-},
-{
-  "value": 3,
-  "translationCode": "lookupTable.classification.superClassified"
-}
+[
+  {
+    "value": 1,
+    "translationCode": "lookupTable.classification.classified"
+  },
+  {
+    "value": 2,
+    "translationCode": "lookupTable.classification.balmas"
+  },
+  {
+    "value": 3,
+    "translationCode": "lookupTable.classification.superClassified"
+  }
 ]
