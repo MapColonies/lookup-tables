@@ -38,7 +38,7 @@ export class ServerBuilder {
   }
 
   private buildRoutes(): void {
-    this.serverInstance.use('/', this.lookupTablesRouter);
+    this.serverInstance.use('/lookup-tables', this.lookupTablesRouter);
     this.buildDocsRoutes();
   }
 
