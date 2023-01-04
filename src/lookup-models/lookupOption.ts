@@ -1,7 +1,7 @@
 interface ILookupOption {
-  value: string; 
+  value: string;
   translationCode: string;
   properties?: Record<string, unknown>;
 };
 
-export default ILookupOption;
+export { ILookupOption }

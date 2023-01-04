@@ -7,19 +7,25 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 paths:
-  /lookup-tables/country:
+  /lookup-tables/lookupData/{lookupKey}:
     get:
-      operationId: getCountryList
+      operationId: getLookupData
       tags:
-        - getCountryList
-      summary: get country list
+        - getLookupData
+      summary: get lookup data
+      parameters: 
+      - name: lookupKey
+        required: true
+        in: path
+        schema:
+          type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/countryList'
+                $ref: '#/components/schemas/lookupOptionList'
         400:
           description: Bad Request
           content:
@@ -32,51 +38,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /lookup-tables/country/excludeFields:
-    post:
-      operationId: getCountryListExcludeFields
-      tags:
-        - GetCountryListExcludeFields
-      summary: get country list and exclude fields
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items: 
-                $ref: '#/components/schemas/countryField'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/countryList'
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /lookup-tables/classification:
+  /lookup-tables/capabilities:
     get:
-      operationId: getClassificationList
+      operationId: getCapabilities
       tags:
-        - getClassificationList
-      summary: get classification list
+        - getCapabilities
+      summary: get capabilities
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/classificationList'
+                $ref: '#/components/schemas/capabilities'
         400:
           description: Bad Request
           content:
@@ -91,37 +65,24 @@ paths:
                 $ref: '#/components/schemas/error'
 components:
   schemas:
-    country:
-      type: object
-      required:
-        - code
-      properties:
-        code:
-          type: number
-          format: int64
-        name:
-          type: string
-    countryList:
+    lookupOptionList:
       type: array
       items:
-        $ref: '#/components/schemas/country'
-    countryField:
+        $ref: '#/components/schemas/lookupOption'
+    lookupOption:
+      type: object
+      required:
+        - translationCode
+        - value
+      properties:
+        translationCode:
+          type: string
+        value:
+          type: string
+    capabilities:
+      type: array
+      items:
         type: string
-        enum: [code, name]
-    classification:
-      type: object
-      required:
-        - id
-      properties:
-        id:
-          type: number
-          format: int64
-        name:
-          type: string
-    classificationList:
-      type: array
-      items:
-        $ref: '#/components/schemas/classification'
     error:
       type: object
       required:

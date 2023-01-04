@@ -6,9 +6,8 @@ const lookupTablesRouterFactory: FactoryFunction<Router> = (dependencyContainer)
   const router = Router();
   const controller = dependencyContainer.resolve(LookupTablesController);
 
-  router.get('/country', controller.getCountryList);
-  router.get('/classification', controller.getClassificationList);
-  router.post('/country/excludeFields', controller.getCountryListExcludeFields);
+  router.get('/lookupData/:lookupKey', controller.getLookupData);
+  router.get('/capabilities', controller.getCapabilities);
 
   return router;
 };

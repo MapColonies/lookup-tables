@@ -3,13 +3,11 @@ import { RequestHandler } from 'express';
 import httpStatus from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
-import { IClassificationOption, ICountryOption } from '../../lookup-models';
-import { CountryOptionalField, CountryParams } from '../../lookup-models/country';
+import { ILookupOption } from '../../lookup-models';
 import { LookupTablesManager } from '../models/lookupTablesManager';
 
-type GetCountryHandler = RequestHandler<undefined, ICountryOption[]>;
-type GetClassificationHandler = RequestHandler<undefined, IClassificationOption[]>;
-type GetCountryListExcludeFieldsHandler = RequestHandler<undefined, ICountryOption[], CountryParams>;
+type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[]>;
+type GetCapabilitiesHandler = RequestHandler<undefined, string[]>;
 
 @injectable()
 export class LookupTablesController {
@@ -18,38 +16,25 @@ export class LookupTablesController {
     @inject(LookupTablesManager) private readonly manager: LookupTablesManager
   ) { }
 
-  public getCountryList: GetCountryHandler = (req, res, next) => {
-    let countryList;
+  public getLookupData: GetLookupDataHandler = (req, res, next) => {
+    let lookupOptionList: ILookupOption[];
+    const lookupKey: string = req.params.lookupKey;
 
     try {
-      countryList = this.manager.getCountryList();
-      return res.status(httpStatus.OK).json(countryList);
+      lookupOptionList = this.manager.getLookupData(lookupKey);
+      return res.status(httpStatus.OK).json(lookupOptionList);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });
       return next(error)
     }
   };
 
-  public getCountryListExcludeFields: GetCountryListExcludeFieldsHandler = (req, res, next) => {
-    let countryList;
-    const countryParams: CountryParams = req.body;
-    const excludeFields: CountryOptionalField[] = countryParams.excludeFields;
+  public getCapabilities: GetCapabilitiesHandler = (req, res, next) => {
+    let capabilities: string[];
 
     try {
-      countryList = this.manager.getCountryListExcludeFields(excludeFields);
-      return res.status(httpStatus.OK).json(countryList);
-    } catch (error) {
-      this.logger.error({ msg: 'Failed to fetch country list' });
-      return next(error)
-    }
-  };
-
-  public getClassificationList: GetClassificationHandler = (req, res, next) => {
-    let classificationList;
-    
-    try {
-      classificationList = this.manager.getClassificationList();
-      return res.status(httpStatus.OK).json(classificationList);
+      capabilities = this.manager.getCapabilities();
+      return res.status(httpStatus.OK).json(capabilities);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });
       return next(error)

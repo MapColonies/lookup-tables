@@ -3,45 +3,28 @@ import path from 'path';
 import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
-import { IClassificationOption, ICountryOption, Properties } from '../../lookup-models';
-import { CountryOptionalField } from '../../lookup-models/country';
+import { ILookupOption } from '../../lookup-models';
 
-const COUNTRY_FILE_PATH = path.resolve(__dirname, "../../values/country.json");
-const CLASSIFICATION_FILE_PATH = path.resolve(__dirname, "../../values/classification.json");
+const ASSETS_FOLDER_PATH = path.resolve(__dirname, "../../assets");
+const JSON_EXTENSION = ".json";
 
 @injectable()
 export class LookupTablesManager {
   public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
 
-  public getClassificationList(): IClassificationOption[] {
-    const classificationList: IClassificationOption[] = this.readListFromFile(CLASSIFICATION_FILE_PATH);
-    this.logger.debug({ msg: 'fetch classification', classificationList });
-    return classificationList;
+  public getLookupData(lookupKey: string): ILookupOption[] {
+    this.logger.debug({ msg: 'get lookup data' });
+    const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
+    const lookupOptionList: ILookupOption[] = this.readListFromFile(filePath);
+    return lookupOptionList;
   }
 
-  public getCountryList(): ICountryOption[] {
-    this.logger.debug({ msg: 'fetch country list' });
-    const countryList: ICountryOption[] = this.readListFromFile(COUNTRY_FILE_PATH);
-    return countryList;
-  }
-
-  public getCountryListExcludeFields(excludeFields: CountryOptionalField[]): ICountryOption[] {
-    this.logger.debug({ msg: 'fetch country list with exclude fields', excludeFields });
-    const countryList: ICountryOption[] = this.getCountryList();
-    const partialCountryList: ICountryOption[] = this.filterCountryFields(countryList, excludeFields)
-    return partialCountryList;
-  }
-
-  private filterCountryFields(countryList: ICountryOption[], excludeFields: CountryOptionalField[]): ICountryOption[] {
-    return countryList.map(country => {
-      for (const field of excludeFields) {
-        const properties: Properties | undefined = country.properties;
-        if (properties) {
-          delete properties[field];
-        }
-      }
-      return country;
-    });
+  public getCapabilities(): string[] {
+    this.logger.debug({ msg: 'get capabilities list' });
+    const files = fs.readdirSync(ASSETS_FOLDER_PATH);
+    const assetsFileNames = files.map(folder => folder.split(JSON_EXTENSION)[0]);
+    
+    return assetsFileNames;
   }
 
   private readListFromFile<T>(filePath: string): T[] {

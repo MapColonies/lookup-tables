@@ -18,7 +18,7 @@
     "prebuild": "npm run clean",
     "build": "tsc --project tsconfig.build.json && npm run assets:copy",
     "start": "npm run build && cd dist && node ./index.js",
-    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles -f ./src/values/* ./dist/values",
+    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles -f ./src/assets/* ./dist/assets",
     "clean": "rimraf dist",
     "install": "npx husky install",
     "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.0.0",
