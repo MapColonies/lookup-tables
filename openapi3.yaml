@@ -19,6 +19,13 @@ paths:
         in: path
         schema:
           type: string
+      - name: excludeFields
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
       responses:
         200:
           description: OK

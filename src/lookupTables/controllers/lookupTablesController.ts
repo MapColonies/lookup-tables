@@ -6,7 +6,7 @@ import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
 import { LookupTablesManager } from '../models/lookupTablesManager';
 
-type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[]>;
+type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeFields: string[] }>;
 type GetCapabilitiesHandler = RequestHandler<undefined, string[]>;
 
 @injectable()
@@ -19,9 +19,11 @@ export class LookupTablesController {
   public getLookupData: GetLookupDataHandler = (req, res, next) => {
     let lookupOptionList: ILookupOption[];
     const lookupKey: string = req.params.lookupKey;
+    const excludeFields: string[] = req.query.excludeFields;
 
     try {
-      lookupOptionList = this.manager.getLookupData(lookupKey);
+      lookupOptionList = this.manager.getLookupData(lookupKey, excludeFields);
+
       return res.status(httpStatus.OK).json(lookupOptionList);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });
