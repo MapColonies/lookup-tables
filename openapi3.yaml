@@ -19,7 +19,7 @@ paths:
         in: path
         schema:
           type: string
-      - name: excludeFields
+      - name: excludeField
         required: false
         in: query
         schema:

@@ -6,7 +6,7 @@ import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
 import { LookupTablesManager } from '../models/lookupTablesManager';
 
-type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeFields: string[] }>;
+type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeField: string[] }>;
 type GetCapabilitiesHandler = RequestHandler<undefined, string[]>;
 
 @injectable()
@@ -19,7 +19,7 @@ export class LookupTablesController {
   public getLookupData: GetLookupDataHandler = (req, res, next) => {
     let lookupOptionList: ILookupOption[];
     const lookupKey: string = req.params.lookupKey;
-    const excludeFields: string[] = req.query.excludeFields;
+    const excludeFields: string[] = req.query.excludeField;
 
     try {
       lookupOptionList = this.manager.getLookupData(lookupKey, excludeFields);
