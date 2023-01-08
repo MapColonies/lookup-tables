@@ -20,6 +20,7 @@ paths:
         schema:
           type: string
       - name: excludeFieldsQuery
+        allowReserved: true
         required: false
         in: query
         schema:
