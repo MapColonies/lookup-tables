@@ -1,13 +1,25 @@
 import * as supertest from 'supertest';
 
-export class LookupTablesRequestSender {
-  public constructor(private readonly app: Express.Application) {}
+const BASE_URL = `/lookup-tables`;
 
-  public async getCountryList(): Promise<supertest.Response> {
-    return supertest.agent(this.app).get(`/country`).set('Content-Type', 'application/json');
-  }
+export class LookupTablesRequestSender {
+  public constructor(private readonly app: Express.Application) { }
+  
 
   public async getClassificationList(): Promise<supertest.Response> {
-    return supertest.agent(this.app).get(`/classification`).set('Content-Type', 'application/json');
+    return supertest.agent(this.app).get(`${BASE_URL}/lookupData/classification`).set('Content-Type', 'application/json');
+  }
+
+  public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
+    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/country`);
+    if (excludeFieldsQuery != null) {
+      void superSetCall.query({ excludeFieldsQuery });
+    }
+
+    return superSetCall.set('Content-Type', 'application/json');
+  }
+
+  public async getCapabilities(): Promise<supertest.Response> {
+    return supertest.agent(this.app).get(`${BASE_URL}/capabilities`).set('Content-Type', 'application/json');
   }
 }
