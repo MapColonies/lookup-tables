@@ -59,7 +59,7 @@ describe('lookupTables', function () {
   describe('Bad Path', function () {
     // All requests with status code of 400
   });
-  
+
   describe('Sad Path', function () {
     // All requests with status code 4XX-5XX
   });

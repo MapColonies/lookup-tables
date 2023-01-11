@@ -14,7 +14,7 @@ export class LookupTablesController {
   public constructor(
     @inject(SERVICES.LOGGER) private readonly logger: Logger,
     @inject(LookupTablesManager) private readonly manager: LookupTablesManager
-  ) { }
+  ) {}
 
   public getLookupData: GetLookupDataHandler = (req, res, next) => {
     let lookupOptionList: ILookupOption[];
@@ -27,7 +27,7 @@ export class LookupTablesController {
       return res.status(httpStatus.OK).json(lookupOptionList);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });
-      return next(error)
+      return next(error);
     }
   };
 
@@ -39,7 +39,7 @@ export class LookupTablesController {
       return res.status(httpStatus.OK).json(capabilities);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });
-      return next(error)
+      return next(error);
     }
   };
 }

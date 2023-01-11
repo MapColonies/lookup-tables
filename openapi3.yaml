@@ -13,18 +13,18 @@ paths:
       tags:
         - getLookupData
       summary: get lookup data
-      parameters: 
-      - name: lookupKey
-        required: true
-        in: path
-        schema:
-          type: string
-      - name: excludeFieldsQuery
-        allowReserved: true
-        required: false
-        in: query
-        schema:
-          type: string
+      parameters:
+        - name: lookupKey
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: excludeFieldsQuery
+          allowReserved: true
+          required: false
+          in: query
+          schema:
+            type: string
       responses:
         200:
           description: OK

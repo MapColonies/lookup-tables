@@ -15,9 +15,6 @@
 // [output] a string
 // middle permutation.
 
-
 function middlePermutation(s) {
   //coding and coding..
-  
-  
 }
