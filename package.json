@@ -1,5 +1,5 @@
 {
-  "name": "service-name",
+  "name": "lookup-tables",
   "version": "1.0.0",
   "description": "This is template for map colonies typescript service",
   "main": "./src/index.ts",
@@ -14,13 +14,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "release": "standard-version",
-    "test": "npm run test:unit && npm run test:integration",
+    "test": "npm run test:integration && npm run test:unit",
     "prebuild": "npm run clean",
-    "build": "tsc --project tsconfig.build.json  && npm run assets:copy",
+    "build": "tsc --project tsconfig.build.json && npm run assets:copy",
     "start": "npm run build && cd dist && node ./index.js",
-    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist",
+    "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles -f ./src/assets/* ./dist/assets",
     "clean": "rimraf dist",
-    "install": "npx husky install"
+    "install": "npx husky install",
+    "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.0.0",
+    "docker-build": "sudo docker build . -t lookup-tables:v1.0.0",
+    "docker-upload": "sudo docker tag lookup-tables:v1.0.0 acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0",
+    "docker-save": "sudo docker save -o ./lookup-tables.tar lookup-tables:v1.0.0"
   },
   "directories": {
     "test": "tests"
@@ -50,11 +54,13 @@
     "@opentelemetry/api-metrics": "0.23.0",
     "@opentelemetry/instrumentation-express": "0.23.0",
     "@opentelemetry/instrumentation-http": "0.23.0",
+    "@types/geojson": "^7946.0.10",
     "compression": "^1.7.4",
     "config": "^3.3.7",
     "express": "^4.18.1",
     "express-openapi-validator": "^4.13.8",
     "http-status-codes": "^2.2.0",
+    "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.7.0"
   },
@@ -70,6 +76,7 @@
     "@types/config": "^3.3.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.7",
+    "@types/lodash": "^4.14.191",
     "@types/multer": "^1.4.7",
     "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",

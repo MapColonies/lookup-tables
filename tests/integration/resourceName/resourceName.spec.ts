@@ -4,11 +4,11 @@ import httpStatusCodes from 'http-status-codes';
 
 import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
-import { IResourceNameModel } from '../../../src/resourceName/models/resourceNameManager';
-import { ResourceNameRequestSender } from './helpers/requestSender';
+import { ILookupOption } from '../../../src/lookup-models';
+import { LookupTablesRequestSender } from './helpers/requestSender';
 
-describe('resourceName', function () {
-  let requestSender: ResourceNameRequestSender;
+describe('lookupTables', function () {
+  let requestSender: LookupTablesRequestSender;
   beforeEach(function () {
     const app = getApp({
       override: [
@@ -17,30 +17,49 @@ describe('resourceName', function () {
       ],
       useChild: true,
     });
-    requestSender = new ResourceNameRequestSender(app);
+    requestSender = new LookupTablesRequestSender(app);
   });
 
   describe('Happy Path', function () {
-    it('should return 200 status code and the resource', async function () {
-      const response = await requestSender.getResource();
+    it('should return 200 status code and classification list', async function () {
+      const response = await requestSender.getClassificationList();
+      const classification = response.body as ILookupOption[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
-
-      const resource = response.body as IResourceNameModel;
-      expect(response).toSatisfyApiSpec();
-      expect(resource.id).toBe(1);
-      expect(resource.name).toBe('ronin');
-      expect(resource.description).toBe('can you do a logistics run?');
+      expect(classification.length).toBeDefined();
     });
-    it('should return 200 status code and create the resource', async function () {
-      const response = await requestSender.createResource();
 
-      expect(response.status).toBe(httpStatusCodes.CREATED);
+    it('should return 200 status code and country list', async function () {
+      const response = await requestSender.getCountryList();
+      const countryList = response.body as ILookupOption[];
+
+      expect(response.status).toBe(httpStatusCodes.OK);
+      expect(countryList.length).toBeDefined();
+    });
+
+    it('should return 200 status code and country list without geometry field', async function () {
+      const response = await requestSender.getCountryList('properties.geometry');
+      const filteredCountryList = response.body as ILookupOption[];
+
+      expect(response.status).toBe(httpStatusCodes.OK);
+      expect(filteredCountryList.length).toBeDefined();
+      expect(filteredCountryList[0].properties).toBeDefined();
+      expect(filteredCountryList[0].properties?.geometry).toBeUndefined();
+    });
+
+    it('should return 200 status code and the capabilities', async function () {
+      const response = await requestSender.getCapabilities();
+      const capabilities = response.body as string[];
+
+      expect(response.status).toBe(httpStatusCodes.OK);
+      expect(capabilities.length).toBeDefined();
     });
   });
+
   describe('Bad Path', function () {
     // All requests with status code of 400
   });
+
   describe('Sad Path', function () {
     // All requests with status code 4XX-5XX
   });
