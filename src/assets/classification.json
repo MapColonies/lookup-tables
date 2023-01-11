@@ -1,26 +1,26 @@
 [
   {
-    "value": 1,
+    "value": "1",
     "translationCode": "lookupTable.classification.topSecret"
   },
   {
-    "value": 2,
+    "value": "2",
     "translationCode": "lookupTable.classification.superClassified"
   },
   {
-    "value": 3,
+    "value": "3",
     "translationCode": "lookupTable.classification.classified"
   },
   {
-    "value": 4,
+    "value": "4",
     "translationCode": "lookupTable.classification.secret"
   },
   {
-    "value": 5,
+    "value": "5",
     "translationCode": "lookupTable.classification.balmas"
   },
   {
-    "value": 6,
+    "value": "6",
     "translationCode": "lookupTable.classification.balmas"
   }
 ]
