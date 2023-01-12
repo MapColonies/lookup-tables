@@ -1,5 +1,5 @@
 interface ILookupOption {
-  value: number;
+  value: string;
   translationCode: string;
   properties?: Record<string, unknown>;
 }
