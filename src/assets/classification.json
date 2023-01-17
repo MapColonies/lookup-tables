@@ -1,26 +1,26 @@
 [
   {
     "value": "1",
-    "translationCode": "lookupTable.classification.levelOne"
+    "translationCode": "lookupTable.classification.levelLocalDummyOne"
   },
   {
     "value": "2",
-    "translationCode": "lookupTable.classification.levelTwo"
+    "translationCode": "lookupTable.classification.levelLocalDummyTwo"
   },
   {
     "value": "3",
-    "translationCode": "lookupTable.classification.levelThree"
+    "translationCode": "lookupTable.classification.levelLocalDummyThree"
   },
   {
     "value": "4",
-    "translationCode": "lookupTable.classification.levelFour"
+    "translationCode": "lookupTable.classification.levelLocalDummyFour"
   },
   {
     "value": "5",
-    "translationCode": "lookupTable.classification.levelFive"
+    "translationCode": "lookupTable.classification.levelLocalDummyFive"
   },
   {
     "value": "6",
-    "translationCode": "lookupTable.classification.levelSix"
+    "translationCode": "lookupTable.classification.levelLocalDummySix"
   }
 ]
