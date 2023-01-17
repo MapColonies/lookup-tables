@@ -21,10 +21,10 @@
     "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles -f ./src/assets/* ./dist/assets",
     "clean": "rimraf dist",
     "install": "npx husky install",
-    "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.0.0",
-    "docker-build": "sudo docker build . -t lookup-tables:v1.0.0",
-    "docker-upload": "sudo docker tag lookup-tables:v1.0.0 acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0",
-    "docker-save": "sudo docker save -o ./lookup-tables.tar lookup-tables:v1.0.0"
+    "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.1.0",
+    "docker-build": "sudo docker build . -t lookup-tables:v1.1.0",
+    "docker-upload": "sudo docker tag lookup-tables:v1.1.0 acrarolibotnonprod.azurecr.io/lookup-tables:v1.1.0 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:v1.1.0",
+    "docker-save": "sudo docker save -o ./lookup-tables.tar lookup-tables:v1.1.0"
   },
   "directories": {
     "test": "tests"
