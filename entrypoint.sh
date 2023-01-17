@@ -1,7 +1,5 @@
 #!/bin/sh
 
-printenv
-
 echo cloning from repo 'https://github.com/MapColonies/static-assets'
 
 whoami

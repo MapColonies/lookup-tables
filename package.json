@@ -22,8 +22,9 @@
     "clean": "rimraf dist",
     "install": "npx husky install",
     "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:1.1.3",
-    "docker-build": "sudo docker build . -t lookup-tables:1.1.4",
-    "docker-upload": "sudo docker tag lookup-tables:1.1.4 acrarolibotnonprod.azurecr.io/lookup-tables:1.1.4 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:1.1.4"
+    "docker-build": "sudo docker build . -t lookup-tables:1.1.5",
+    "docker-upload": "sudo docker tag lookup-tables:1.1.5 acrarolibotnonprod.azurecr.io/lookup-tables:1.1.5 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:1.1.5",
+    "docker-build-and-upload": "npm run docker-build && npm run docker-upload"
   },
   "directories": {
     "test": "tests"
