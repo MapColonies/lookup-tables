@@ -13,6 +13,7 @@ resetOnConfigChange: true
 
 cloudProvider:
   dockerRegistryUrl: acrarolibotnonprod.azurecr.io
+  imagePullSecretName: 'my-registry-secret'
   flavor: openshift
 
 caSecretName: ''
