@@ -21,7 +21,7 @@ caPath: '/usr/local/share/ca-certificates'
 caKey: 'ca.crt'
 
 image:
-  repository: lookup-table
+  repository: lookup-tables
   tag: 'latest'
 
 env:
