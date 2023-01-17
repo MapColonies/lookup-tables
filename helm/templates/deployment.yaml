@@ -59,6 +59,8 @@ spec:
             - name: NODE_EXTRA_CA_CERTS
               value: {{ printf "[%s/%s]" .Values.caPath .Values.caKey | quote }}
             {{- end }}
+            - name: CLASSIFIED_REPO_URL
+              value: {{ .Values.env.CLASSIFIED_REPO_URL | quote }}
           envFrom:
             - configMapRef:
                 name: {{ $releaseName }}-{{ $chartName }}-configmap
