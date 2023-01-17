@@ -14,6 +14,7 @@ COPY ./entrypoint.sh ./
 RUN chmod +x ./entrypoint.sh
 
 RUN mkdir -p ./classified_repo && chown -R :root ./classified_repo && chmod -R g=u ./classified_repo
+RUN mkdir -p ./dist/assets && chown -R :root ./dist/assets && chmod -R g=u ./dist/assets
 
 USER node
 EXPOSE 8080
