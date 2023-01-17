@@ -1,25 +1,23 @@
-FROM ubuntu:latest as assets
-WORKDIR /tmp/assets
-RUN apt-get -y update
-RUN apt-get -y install git
-RUN git clone https://github.com/ronnahom96/lookup-tables-assets.git
-
 FROM node:16 as build
-WORKDIR /tmp/buildApp
+
+WORKDIR /app
+
 COPY ./package*.json ./
-RUN npm install
-COPY . .
+RUN npm ci
+
+COPY . /app
 RUN npm run build
 
-FROM node:16.14.2-alpine3.14 as production
 ENV NODE_ENV=production
-ENV SERVER_PORT=8080
-WORKDIR /usr/src/app
-COPY --chown=node:node package*.json ./
-RUN npm ci --only=production
-COPY --chown=node:node --from=build /tmp/buildApp/dist .
-COPY --chown=node:node --from=assets /tmp/assets/lookup-tables-assets ./assets
-COPY --chown=node:node ./config ./config
+
+COPY ./entrypoint.sh ./
+RUN chmod +x ./entrypoint.sh
+
+RUN chmod g+rwx -R ./dist/assets
+RUN chgrp -R node ./dist/assets
+
 USER node
 EXPOSE 8080
+
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["node", "--max_old_space_size=512", "./index.js"]

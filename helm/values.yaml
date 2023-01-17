@@ -38,6 +38,7 @@ env:
   metrics:
     enabled: false
     url: http://localhost:55681/v1/metrics
+  CLASSIFIED_REPO_URL: https://github.com/MapColonies/static-assets
 
 resources:
   enabled: true
