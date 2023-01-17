@@ -13,9 +13,9 @@ ENV NODE_ENV=production
 COPY ./entrypoint.sh ./
 RUN chmod +x ./entrypoint.sh
 
-RUN mkdir -p ./classified_repo
-RUN chmod g+rwx -R ./classified_repo
-RUN chgrp -R node ./classified_repo
+RUN mkdir -p ./classified_assets
+RUN chmod g+rwx -R ./classified_assets
+RUN chgrp -R node ./classified_assets
 
 RUN chmod g+rwx -R ./dist/assets
 RUN chgrp -R node ./dist/assets

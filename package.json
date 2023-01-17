@@ -23,7 +23,6 @@
     "install": "npx husky install",
     "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.0.0",
     "docker-build": "sudo docker build . -t lookup-tables:v1.0.0",
-    "docker-build-and-run": "npm run docker-build && npm run docker-run -e CLASSIFIED_REPO_URL='https://github.com/MapColonies/static-assets.git'",
     "docker-upload": "sudo docker tag lookup-tables:v1.0.0 acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:v1.0.0",
     "docker-save": "sudo docker save -o ./lookup-tables.tar lookup-tables:v1.0.0"
   },
