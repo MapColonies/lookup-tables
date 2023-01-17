@@ -20,4 +20,4 @@ USER node
 EXPOSE 8080
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["node", "--max_old_space_size=512", "./index.ts"]
+CMD ["node", "--max_old_space_size=512", "./dist/index.js"]
