@@ -12,8 +12,7 @@ nodePort: 30030 #for minikube deployment only
 resetOnConfigChange: true
 
 cloudProvider:
-  dockerRegistryUrl: my-registry-url.io
-  imagePullSecretName: 'my-registry-secret'
+  dockerRegistryUrl: acrarolibotnonprod.azurecr.io
   flavor: openshift
 
 caSecretName: ''
@@ -22,7 +21,7 @@ caKey: 'ca.crt'
 
 image:
   repository: lookup-tables
-  tag: 'latest'
+  tag: 1.0.0
 
 env:
   port: 8080
