@@ -1,13 +1,13 @@
 #!/bin/sh
 
-echo cloning from repo 'https://github.com/MapColonies/static-assets'
+echo cloning from repo $CLASSIFIED_REPO_URL
 
 whoami
-
+CLASSIFIED_REPO='/app/classified_repo'
 CLASSIFIED_REPO_PATH='/app/classified_repo'
 cd $CLASSIFIED_REPO_PATH
 
-git clone 'https://github.com/MapColonies/static-assets' .
+git clone $CLASSIFIED_REPO_URL .
 echo "Finish clone..."
 
 \cp -r $CLASSIFIED_REPO_PATH/src/lookup-tables/. /app/classified_repo/
