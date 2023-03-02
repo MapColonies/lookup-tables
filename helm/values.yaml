@@ -22,7 +22,7 @@ caKey: 'ca.crt'
 
 image:
   repository: lookup-tables
-  tag: v1.1.8
+  tag: v1.1.9
 
 env:
   port: 8080
