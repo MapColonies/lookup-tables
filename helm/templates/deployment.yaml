@@ -1,14 +1,14 @@
+{{- if .Values.enabled -}}
 {{- $releaseName := .Release.Name -}}
 {{- $chartName := include "lookup-tables.name" . -}}
 {{- $cloudProviderFlavor := include "lookup-tables.cloudProviderFlavor" . -}}
 {{- $cloudProviderDockerRegistryUrl := include "lookup-tables.cloudProviderDockerRegistryUrl" . -}}
 {{- $cloudProviderImagePullSecretName := include "lookup-tables.cloudProviderImagePullSecretName" . -}}
 {{- $imageTag := include "lookup-tables.tag" . -}}
-{{- if .Values.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $releaseName }}-{{ $chartName }}
+  name: {{ $releaseName }}
   labels:
     app: {{ $chartName }}
     component: {{ $chartName }}
@@ -40,7 +40,7 @@ spec:
         - name: {{ $cloudProviderImagePullSecretName | quote }}
     {{- end }}
       containers:
-        - name: {{ $releaseName }}-{{ $chartName }}-deployment
+        - name: {{ $releaseName }}-deployment
           {{- with .Values.image }}
           image: {{ $cloudProviderDockerRegistryUrl }}{{ .repository }}:{{ $imageTag }}
           {{- end }}
@@ -63,7 +63,7 @@ spec:
               value: {{ .Values.env.CLASSIFIED_REPO_URL | quote }}
           envFrom:
             - configMapRef:
-                name: {{ $releaseName }}-{{ $chartName }}-configmap
+                name: {{ $releaseName }}-configmap
           ports:
             - name: http
               containerPort: {{ .Values.env.targetPort }}

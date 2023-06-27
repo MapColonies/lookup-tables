@@ -1,11 +1,11 @@
+{{- if .Values.enabled -}}
 {{- $releaseName := .Release.Name -}}
 {{- $chartName := include "lookup-tables.name" . -}}
 {{- $cloudProviderFlavor := include "lookup-tables.cloudProviderFlavor" . -}}
-{{- if .Values.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $releaseName }}-{{ $chartName }}
+  name: {{ $releaseName }}
   labels:
     app: {{ $chartName }}
     component: {{ $chartName }}
