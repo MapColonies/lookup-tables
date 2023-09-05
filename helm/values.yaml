@@ -13,12 +13,12 @@ resetOnConfigChange: true
 
 cloudProvider:
   dockerRegistryUrl: acrarolibotnonprod.azurecr.io
-  imagePullSecretName: 'my-registry-secret'
+  imagePullSecretName: my-registry-secret
   flavor: openshift
 
 caSecretName: ''
-caPath: '/usr/local/share/ca-certificates'
-caKey: 'ca.crt'
+caPath: /usr/local/share/ca-certificates
+caKey: ca.crt
 
 image:
   repository: lookup-tables
@@ -60,7 +60,9 @@ route:
 ingress:
   enabled: false
   path: /
-  host: 'localhost'
+  host:
   cors:
     enabled: true
     origin: '*'
+  tls:
+    useExternal: wildcard.maps.np.pkz.even
