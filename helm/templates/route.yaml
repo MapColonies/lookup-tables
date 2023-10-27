@@ -17,6 +17,8 @@ spec:
     name: {{ $releaseName }}
   port:
     targetPort: http
+  {{- if .Values.route.tls }}
   tls:
     termination: edge
+  {{- end }}
 {{- end -}}
