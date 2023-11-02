@@ -14,6 +14,7 @@ resetOnConfigChange: true
 cloudProvider:
   dockerRegistryUrl: acrarolibotnonprod.azurecr.io
   imagePullSecretName: my-registry-secret
+  imagePullPolicy: Always
   flavor: openshift
 
 caSecretName: ''
@@ -38,7 +39,7 @@ env:
   metrics:
     enabled: false
     url: http://localhost:55681/v1/metrics
-  CLASSIFIED_REPO_URL: https://github.com/MapColonies/lookup-tables-data
+  classifiedRepoUrl: -c http:sslVerify=false https://github.com/MapColonies/lookup-tables-data
 
 resources:
   enabled: true
@@ -52,6 +53,7 @@ resources:
 
 route:
   enabled: true
+  host:
   path: /
   tls: true
   timeout:
@@ -60,10 +62,10 @@ route:
 
 ingress:
   enabled: false
-  path: /
   host:
+  path: /
   cors:
     enabled: true
     origin: '*'
   tls:
-    useExternal: wildcard.maps.np.pkz.even
+    useExternal:
