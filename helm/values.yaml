@@ -39,7 +39,7 @@ env:
   metrics:
     enabled: false
     url: http://localhost:55681/v1/metrics
-  classifiedRepoUrl: -c http:sslVerify=false https://github.com/MapColonies/lookup-tables-data
+  classifiedRepoUrl: https://github.com/MapColonies/lookup-tables-data
 
 resources:
   enabled: true
