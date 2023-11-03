@@ -17,6 +17,5 @@ data:
   {{ if .Values.env.metrics.enabled }}
   TELEMETRY_METRICS_ENABLED: 'true'
   TELEMETRY_METRICS_URL: {{ $metricsUrl }}
-  CLASSIFIED_REPO_URL: {{ quote .Values.env.CLASSIFIED_REPO_URL }}
   {{ end }}
 {{- end }}
