@@ -63,7 +63,7 @@ route:
 ingress:
   enabled: false
   host:
-  path: /
+  path: /lookup-tables
   cors:
     enabled: true
     origin: '*'
