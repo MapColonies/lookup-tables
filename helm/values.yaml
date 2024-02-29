@@ -17,10 +17,6 @@ cloudProvider:
   imagePullPolicy: Always
   flavor: openshift
 
-caSecretName: ''
-caPath: /usr/local/share/ca-certificates
-caKey: ca.crt
-
 image:
   repository: lookup-tables
   tag: v1.1.9
