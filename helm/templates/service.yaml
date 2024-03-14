@@ -1,6 +1,6 @@
 {{- if .Values.enabled -}}
 {{- $releaseName := .Release.Name -}}
-{{- $chartName := include "lookup-tables.name" . -}}
+{{- $chartName := .Chart.Name -}}
 {{- $cloudProviderFlavor := include "lookup-tables.cloudProviderFlavor" . -}}
 apiVersion: v1
 kind: Service
