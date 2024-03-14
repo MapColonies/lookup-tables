@@ -14,7 +14,7 @@ spec:
   path:  {{ .Values.route.path | default "/" }}
   to:
     kind: Service
-    name: {{ $releaseName }}-lt
+    name: {{ $releaseName }}-{{ $chartName }}
   port:
     targetPort: http
   {{- if .Values.route.tls }}
