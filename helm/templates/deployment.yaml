@@ -1,7 +1,6 @@
 {{- if .Values.enabled -}}
 {{- $releaseName := .Release.Name -}}
 {{- $chartName := include "lookup-tables.name" . -}}
-{{- $cloudProviderFlavor := include "lookup-tables.cloudProviderFlavor" . -}}
 {{- $cloudProviderDockerRegistryUrl := include "lookup-tables.cloudProviderDockerRegistryUrl" . -}}
 {{- $cloudProviderImagePullSecretName := include "lookup-tables.cloudProviderImagePullSecretName" . -}}
 {{- $imageTag := include "lookup-tables.tag" . -}}
