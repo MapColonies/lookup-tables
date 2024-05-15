@@ -58,8 +58,9 @@ route:
 
 ingress:
   enabled: false
+  type: nginx-kubernetes # supported values: 'nginx-org' | 'nginx-kubernetes'
   host:
-  path: /lookup-tables
+  path: /
   cors:
     enabled: true
     origin: '*'
