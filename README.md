@@ -116,3 +116,40 @@ To only run integration tests:
 ```bash
 npm run test:integration
 ```
+
+## Comment
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      initContainers:
+      - name: clone-repo
+        image: alpine/git
+        command:
+        - /bin/sh
+        - -c
+        - git clone https://github.com/username/my-app.git /app
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+      containers:
+      - name: my-container
+        image: my-app:v1
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+      volumes:
+      - name: app-code
+        emptyDir: {}
+```
