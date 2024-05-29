@@ -17,22 +17,20 @@ export class LookupTablesManager {
     this.logger.debug({ msg: 'get lookup data' });
     const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
     let lookupOptionList: ILookupOption[];
-
     try {
       lookupOptionList = this.readListFromFile(filePath);
     } catch (error) {
       throw new Error('Incorrect lookupKey, no data found');
     }
-
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
   }
 
   public getCapabilities(): string[] {
     this.logger.debug({ msg: 'get capabilities list' });
-    const files = fs.readdirSync(ASSETS_FOLDER_PATH);
-    const assetsFileNames = files.map((folder) => folder.split(JSON_EXTENSION)[0]);
-
+    const files = fs.readdirSync(ASSETS_FOLDER_PATH)
+      .filter((file: any) => path.extname(file).toLowerCase() === JSON_EXTENSION);
+    const assetsFileNames = files.map((file: any) => path.basename(file, JSON_EXTENSION));
     return assetsFileNames;
   }
 
@@ -42,7 +40,6 @@ export class LookupTablesManager {
         _.unset(option, field);
       }
     }
-
     return lookupOptionList;
   }
 
