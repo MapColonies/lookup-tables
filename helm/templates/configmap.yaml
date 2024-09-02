@@ -1,6 +1,5 @@
 {{- $MAIN_OBJECT_BLOCK := "configValues" -}}
 {{- $COMPONENT_NAME := "backend" -}}
-{{- $NAME := include "common.names.name" -}}
 {{- $DATA := include "lookupTablesData" . -}}
 
 {{- define "lookupTablesData" -}}
