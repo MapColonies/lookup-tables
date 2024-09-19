@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/MapColonies/lookup-tables/compare/v1.1.10...v1.2.0) (2024-09-19)
+
+
+### Features
+
+* use helm common ([6ebb14b](https://github.com/MapColonies/lookup-tables/commit/6ebb14b78356c7ac686c1989c6d0660a5cb6bcb4))
+
+
+### Bug Fixes
+
+* serviceAccountName should be default ([4125dc3](https://github.com/MapColonies/lookup-tables/commit/4125dc3ee267707d94985837723e73437d0084d7))
+* unused var ([2538085](https://github.com/MapColonies/lookup-tables/commit/2538085355b72fc76cc69ba349cb2b5888154032))
+
 ### [1.1.10](https://github.com/MapColonies/lookup-tables/compare/v1.1.8...v1.1.10) (2024-05-29)
 
 
