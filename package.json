@@ -24,7 +24,10 @@
     "docker-run": "sudo docker run -it -p 8080:8080 lookup-tables:v1.1.10",
     "docker-build": "sudo docker build . -t lookup-tables:v1.1.10",
     "docker-upload": "sudo docker tag lookup-tables:v1.1.10 acrarolibotnonprod.azurecr.io/lookup-tables:v1.1.10 && sudo docker push acrarolibotnonprod.azurecr.io/lookup-tables:v1.1.10",
-    "docker-build-and-upload": "npm run docker-build && npm run docker-upload"
+    "docker-build-and-upload": "npm run docker-build && npm run docker-upload",
+    "helm-update": "helm dependency update helm",
+    "helm-assets": "npm run helm-update && tar -xzvf ./helm/charts/helm-common*.tgz --strip-components=1 helm-common/schemas",
+    "helm-install": "npm run helm-update && helm install -f 'helm/global.yaml' -f 'helm/values.yaml' lookup-tables helm"
   },
   "directories": {
     "test": "tests"
