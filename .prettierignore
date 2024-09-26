@@ -13,3 +13,5 @@ node_modules
 coverage
 helm
 reports
+.vscode/settings.json
+schemas/*.json
