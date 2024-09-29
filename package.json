@@ -27,7 +27,8 @@
     "docker-build-and-upload": "npm run docker-build && npm run docker-upload",
     "helm-update": "helm dependency update helm",
     "helm-assets": "npm run helm-update && tar -xzvf ./helm/charts/helm-common*.tgz --strip-components=1 helm-common/schemas",
-    "helm-install": "npm run helm-update && helm install -f 'helm/global.yaml' -f 'helm/values.yaml' lookup-tables helm"
+    "helm-install": "npm run helm-update && helm install -f 'helm/global.yaml' -f 'helm/values.yaml' lookup-tables helm",
+    "helm-uninstall": "helm uninstall lookup-tables"
   },
   "directories": {
     "test": "tests"
