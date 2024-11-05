@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/MapColonies/lookup-tables/compare/v1.2.0...v1.3.0) (2024-11-05)
+
+
+### Features
+
+* values schema integration ([2dd9c38](https://github.com/MapColonies/lookup-tables/commit/2dd9c38d1180cdbe36fb6e663abae11646b18c29))
+
+
+### Bug Fixes
+
+* ingress ([46c4685](https://github.com/MapColonies/lookup-tables/commit/46c46855a52b69e292d78bc7e74f8a559d72600e))
+
 ## [1.2.0](https://github.com/MapColonies/lookup-tables/compare/v1.1.10...v1.2.0) (2024-09-19)
 
 
