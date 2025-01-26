@@ -4,6 +4,9 @@ A lookup table service which serves configuration closed lists values
 
 Checkout the OpenAPI spec [here](/openapi3.yaml)
 
+## Development
+When in development you should use the command `npm run start:dev`. The main benefits are that it enables offline mode for the config package, and source map support for NodeJS errors.
+
 ## Installation
 
 Install deps with npm
