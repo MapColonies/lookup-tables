@@ -10,7 +10,7 @@ export class LookupTablesRequestSender {
   }
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
-    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/country`);
+    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/countries`);
     if (excludeFieldsQuery != null) {
       void superSetCall.query({ excludeFieldsQuery });
     }

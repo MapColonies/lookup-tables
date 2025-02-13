@@ -37,14 +37,14 @@ describe('lookupTables', function () {
       expect(countryList.length).toBeDefined();
     });
 
-    it('should return 200 status code and country list without geometry field', async function () {
-      const response = await requestSender.getCountryList('properties.geometry');
+    it('should return 200 status code and country list without value field', async function () {
+      const response = await requestSender.getCountryList('value');
       const filteredCountryList = response.body as ILookupOption[];
 
       expect(response.status).toBe(httpStatusCodes.OK);
       expect(filteredCountryList.length).toBeDefined();
-      expect(filteredCountryList[0].properties).toBeDefined();
-      expect(filteredCountryList[0].properties?.geometry).toBeUndefined();
+      expect(filteredCountryList[0].translation).toBeDefined();
+      expect(filteredCountryList[0].value).toBeUndefined();
     });
 
     it('should return 200 status code and the capabilities', async function () {
