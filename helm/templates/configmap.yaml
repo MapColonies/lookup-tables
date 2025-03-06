@@ -8,8 +8,9 @@
   REQUEST_PAYLOAD_LIMIT: {{ .Values.env.requestPayloadLimit | quote }}
   RESPONSE_COMPRESSION_ENABLED: {{ .Values.env.responseCompressionEnabled | quote }}
 {{- end }}
+  CONFIG_MANAGEMENT_ENABLED: {{ $CONFIG_MANAGER_OBJECT.enabled }}
+  CONFIG_MANAGEMENT_URL: {{ $CONFIG_MANAGER_OBJECT.url }}
   GIT_SSL_NO_VERIFY: {{ .Values.env.gitSslNoVerify | quote }}
-  CLASSIFIED_REPO_URL: {{ .Values.env.classifiedRepoUrl | quote }}
 {{- end -}}
 
 {{ include "mc-chart.configmap" (dict "MAIN_OBJECT_BLOCK" $MAIN_OBJECT_BLOCK "COMPONENT_NAME" $COMPONENT_NAME "DATA" $DATA "WITH_TELEMETRY_TRACING" false "WITH_TELEMETRY_METRICS" false "context" .)}}

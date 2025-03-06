@@ -1,8 +1,8 @@
 import { type ConfigInstance, config } from '@map-colonies/config';
-import { commonLookupTablesDataV1, commonLookupTablesDataV1Type } from '@map-colonies/schemas';
+import { commonBoilerplateV2, commonBoilerplateV2Type } from '@map-colonies/schemas';
 
 // Choose here the type of the config instance and import this type from the entire application
-type ConfigType = ConfigInstance<commonLookupTablesDataV1Type>;
+type ConfigType = ConfigInstance<commonBoilerplateV2Type>;
 
 let configInstance: ConfigType | undefined;
 
@@ -13,7 +13,7 @@ let configInstance: ConfigType | undefined;
  */
 async function initConfig(offlineMode?:boolean): Promise<void> {
   configInstance = await config({
-    schema: commonLookupTablesDataV1,
+    schema: commonBoilerplateV2,
     offlineMode: offlineMode
   });
 };
@@ -23,7 +23,7 @@ function getConfig(): ConfigType {
       throw new Error('config not initialized');
     }
     return configInstance;
-  }
+}
   
   export { getConfig, initConfig, ConfigType };
   

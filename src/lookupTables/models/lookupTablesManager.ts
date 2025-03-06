@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import axios from 'axios';
 import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
@@ -8,19 +9,25 @@ import { ILookupOption } from '../../lookup-models';
 
 const ASSETS_FOLDER_PATH = path.resolve(__dirname, '../../assets');
 const JSON_EXTENSION = '.json';
+const SCHEMA_ID_PATH = 'https://mapcolonies.com/common/lookupTablesData/';
+const SCHEMA_PREFIX = '/v1';
 
 @injectable()
 export class LookupTablesManager {
-  public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) {}
+  public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
 
-  public getLookupData(lookupKey: string, excludeFields: string[] = []): ILookupOption[] {
+  public async getLookupData(lookupKey: string, excludeFields: string[] = []): Promise<ILookupOption[]> {
     this.logger.debug({ msg: 'get lookup data' });
     const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
     let lookupOptionList: ILookupOption[];
-    try {
-      lookupOptionList = this.readListFromFile(filePath);
-    } catch (error) {
-      throw new Error('Incorrect lookupKey, no data found');
+    if ((process.env.CONFIG_MANAGEMENT_ENABLED)!=='true') {
+      try {
+        lookupOptionList = this.readListFromFile(filePath);
+      } catch (error) {
+        throw new Error('Incorrect lookupKey, no data found');
+      }
+    } else {
+      lookupOptionList = await this.getListFromConfigMenegement(`${SCHEMA_ID_PATH}${lookupKey}${SCHEMA_PREFIX}`);
     }
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
@@ -48,5 +55,19 @@ export class LookupTablesManager {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const list: T[] = JSON.parse(fileContent) as T[];
     return list;
+  }
+
+  private getListFromConfigMenegement = async (schemaId: string): Promise<ILookupOption[]> => {
+    try {
+      const response = await axios.get((process.env.CONFIG_MANAGEMENT_URL as string) , {
+        params: {
+          schema_id: schemaId
+        }
+      });
+      return response.data
+    } catch (error) {
+      this.logger.error(error);
+      throw error;
+    }
   }
 }

@@ -1,12 +1,9 @@
-enum Locale {
-  ENGLISH = 'en',
-  HEBREW = 'he'
-}
+import {CountryTranslation} from '@map-colonies/types'
 
 interface ILookupOption {
   value: string;
   translationCode?: string;
-  translation?: {'locale': Locale, 'text': string}[];
+  translation?: CountryTranslation[];
   properties?: Record<string, unknown>;
 }
 
