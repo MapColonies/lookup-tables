@@ -110,3 +110,7 @@ dist
 # Jest
 jest_html_reporters.html
 reports
+
+# Assets
+src/assets/*
+!src/assets/sourceCountryData.json
