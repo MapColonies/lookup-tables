@@ -14,7 +14,7 @@ describe('lookupTables', function () {
   beforeAll(async function () {
     await initConfig(true);
   });
-
+  
   beforeEach(async function () {
     const [app] = await getApp({
       override: [

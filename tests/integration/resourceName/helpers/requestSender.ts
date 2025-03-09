@@ -1,6 +1,6 @@
 import * as supertest from 'supertest';
 
-const BASE_URL = `.../../../../src/assets`;
+const BASE_URL = `/lookup-tables`;
 
 export class LookupTablesRequestSender {
   public constructor(private readonly app: Express.Application) {}
@@ -12,7 +12,7 @@ export class LookupTablesRequestSender {
   }
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
-    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/countries`);
+    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/countries`);
     if (excludeFieldsQuery != null) {
       void superSetCall.query({ excludeFieldsQuery });
     }
