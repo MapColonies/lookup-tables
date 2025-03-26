@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import axios from 'axios';
 import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
+import { requestHandler, requestHandlerConfig } from '@src/utils';
 
 const ASSETS_FOLDER_PATH = path.resolve(__dirname, '../../assets');
 const JSON_EXTENSION = '.json';
@@ -59,12 +59,12 @@ export class LookupTablesManager {
 
   private getListFromConfigMenegement = async (schemaId: string): Promise<ILookupOption[]> => {
     try {
-      const response = await axios.get((process.env.CONFIG_MANAGEMENT_URL as string) , {
-        params: {
-          schema_id: schemaId
-        }
-      });
-      return response.data
+      const response = await requestHandler(
+        process.env.CONFIG_MANAGEMENT_URL as string,
+        'GET',
+        {schema_id: schemaId} as requestHandlerConfig );
+
+      return response.data;
     } catch (error) {
       this.logger.error(error);
       throw error;

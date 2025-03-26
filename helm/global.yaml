@@ -1,7 +1,7 @@
 global:
   configManagment:
     enabled: true
-    url: https://config.mapcolonies.net/api/config
+    url: <CONFIGMANAGEMENT_URL>/api/config
   imageRegistry: acrarolibotnonprod.azurecr.io
   imagePullSecrets:
     - my-registry
