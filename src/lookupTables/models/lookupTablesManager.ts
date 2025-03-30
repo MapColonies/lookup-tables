@@ -5,7 +5,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
-import { requestHandler, requestHandlerConfig } from '@src/utils';
+import { requestHandler, requestHandlerConfig } from '../../utils';
 
 const ASSETS_FOLDER_PATH = path.resolve(__dirname, '../../assets');
 const JSON_EXTENSION = '.json';
