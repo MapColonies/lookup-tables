@@ -5,12 +5,10 @@ import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
-import { requestHandler, requestHandlerConfig } from '../../utils';
+import { requestHandler } from '../../utils';
 
 const ASSETS_FOLDER_PATH = path.resolve(__dirname, '../../assets');
 const JSON_EXTENSION = '.json';
-const SCHEMA_ID_PATH = 'https://mapcolonies.com/common/lookupTablesData/';
-const SCHEMA_PREFIX = '/v1';
 
 @injectable()
 export class LookupTablesManager {
@@ -27,7 +25,7 @@ export class LookupTablesManager {
         throw new Error('Incorrect lookupKey, no data found');
       }
     } else {
-      lookupOptionList = await this.getListFromConfigMenegement(`${SCHEMA_ID_PATH}${lookupKey}${SCHEMA_PREFIX}`);
+      lookupOptionList = await this.getListFromConfigMenegement(lookupKey);
     }
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
@@ -57,14 +55,18 @@ export class LookupTablesManager {
     return list;
   }
 
-  private getListFromConfigMenegement = async (schemaId: string): Promise<ILookupOption[]> => {
+  private getListFromConfigMenegement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
+      const configName = lookupKey === 'hotAreas' ? 'hot-areas': lookupKey
       const response = await requestHandler(
         process.env.CONFIG_MANAGEMENT_URL as string,
         'GET',
-        {schema_id: schemaId} as requestHandlerConfig );
+        {
+          config_name: configName,
+        }
+      );
 
-      return response.data;
+      return response.data.configs.find((configuration: any)=> configuration.configName === configName).config[lookupKey];
     } catch (error) {
       this.logger.error(error);
       throw error;
