@@ -1,4 +1,4 @@
-import {CountryTranslation} from '@map-colonies/types'
+import { CountryTranslation } from '@map-colonies/types';
 
 interface ILookupOption {
   value: string;

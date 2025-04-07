@@ -37,7 +37,7 @@ export class ServerBuilder {
       filePathOrSpec: this.config.get('openapiConfig.filePath'),
     });
     openapiRouter.setup();
-    this.serverInstance.use(this.config.get('openapiConfig.basePath') as string , openapiRouter.getRouter());
+    this.serverInstance.use(this.config.get('openapiConfig.basePath'), openapiRouter.getRouter());
   }
 
   private buildRoutes(): void {

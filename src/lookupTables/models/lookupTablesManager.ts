@@ -12,13 +12,13 @@ const JSON_EXTENSION = '.json';
 
 @injectable()
 export class LookupTablesManager {
-  public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) { }
+  public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) {}
 
   public async getLookupData(lookupKey: string, excludeFields: string[] = []): Promise<ILookupOption[]> {
     this.logger.debug({ msg: 'get lookup data' });
     const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
     let lookupOptionList: ILookupOption[];
-    if ((process.env.CONFIG_MANAGEMENT_ENABLED)!=='true') {
+    if (process.env.CONFIG_MANAGEMENT_ENABLED !== 'true') {
       try {
         lookupOptionList = this.readListFromFile(filePath);
       } catch (error) {
@@ -33,9 +33,8 @@ export class LookupTablesManager {
 
   public getCapabilities(): string[] {
     this.logger.debug({ msg: 'get capabilities list' });
-    const files = fs.readdirSync(ASSETS_FOLDER_PATH)
-      .filter((file: any) => path.extname(file).toLowerCase() === JSON_EXTENSION);
-    const assetsFileNames = files.map((file: any) => path.basename(file, JSON_EXTENSION));
+    const files = fs.readdirSync(ASSETS_FOLDER_PATH).filter((file) => path.extname(file).toLowerCase() === JSON_EXTENSION);
+    const assetsFileNames = files.map((file) => path.basename(file, JSON_EXTENSION));
     return assetsFileNames;
   }
 
@@ -55,21 +54,19 @@ export class LookupTablesManager {
     return list;
   }
 
-  private getListFromConfigMenegement = async (lookupKey: string): Promise<ILookupOption[]> => {
+  private readonly getListFromConfigMenegement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
-      const configName = lookupKey === 'hotAreas' ? 'hot-areas': lookupKey
-      const response = await requestHandler(
-        process.env.CONFIG_MANAGEMENT_URL as string,
-        'GET',
-        {
-          config_name: configName,
-        }
-      );
+      const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
+      const response = await requestHandler(process.env.CONFIG_MANAGEMENT_URL as string, 'GET', {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        config_name: configName,
+      });
 
-      return response.data.configs.find((configuration: any)=> configuration.configName === configName).config[lookupKey];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return response.data.configs.find((configuration: any) => configuration.configName === configName).config[lookupKey];
     } catch (error) {
       this.logger.error(error);
       throw error;
     }
-  }
+  };
 }
