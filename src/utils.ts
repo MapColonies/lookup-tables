@@ -7,9 +7,10 @@ axiosRetry(axios, {
   retries: 0,
 });
 
+// eslint-disable-next-line
 export const requestHandler = async (url: string, method: string, params: any): Promise<AxiosResponse> => {
   return axios
-    .request({ url, method: method as Method, params })
+    .request({ url, method: method as Method, params: params as Record<string, unknown> })
     .then((res) => res)
     .catch((error) => {
       throw error;

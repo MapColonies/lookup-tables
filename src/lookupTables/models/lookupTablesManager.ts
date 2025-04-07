@@ -62,8 +62,8 @@ export class LookupTablesManager {
         config_name: configName,
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return response.data.configs.find((configuration: any) => configuration.configName === configName).config[lookupKey];
+      // eslint-disable-next-line
+      return response.data.configs.find((configuration: any) => configuration.configName === configName).config[lookupKey] as ILookupOption[];
     } catch (error) {
       this.logger.error(error);
       throw error;

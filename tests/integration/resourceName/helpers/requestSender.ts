@@ -3,13 +3,13 @@ import * as supertest from 'supertest';
 const BASE_URL = `/lookup-tables`;
 
 export class LookupTablesRequestSender {
-  public constructor(private readonly app: Express.Application) { }
+  public constructor(private readonly app: Express.Application) {}
 
   public async getClassificationList(): Promise<supertest.Response> {
-    supertest.agent(this.app).get(`${BASE_URL}/classification`);
+    await supertest.agent(this.app).get(`${BASE_URL}/classification`);
     const classification = await supertest.agent(this.app).get(`${BASE_URL}/classification`).set('Content-Type', 'application/json');
     return classification;
-  };
+  }
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
     const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/countries`);
