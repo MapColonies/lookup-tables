@@ -19,13 +19,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/anotherResource'
+                $ref: "#/components/schemas/anotherResource"
         400:
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
+                $ref: "#/components/schemas/error"
   /resourceName:
     get:
       operationId: getResourceName
@@ -38,13 +38,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resource'
+                $ref: "#/components/schemas/resource"
         400:
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
+                $ref: "#/components/schemas/error"
     post:
       operationId: createResource
       tags:
@@ -55,20 +55,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/resource'
+              $ref: "#/components/schemas/resource"
       responses:
         201:
           description: created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resource'
+                $ref: "#/components/schemas/resource"
         400:
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
+                $ref: "#/components/schemas/error"
 security:
   - {}
 components:
