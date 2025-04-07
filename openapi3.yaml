@@ -1,94 +1,78 @@
 openapi: 3.0.1
 info:
-  title: lookup-tables
-  description: Service which serve secret list data like countries, classification, etc.
-  version: 1.3.0
+  title: service-name
+  description: basic template for map colonies service
+  version: 1.0.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 paths:
-  /lookup-tables/lookupData/{lookupKey}:
+  /anotherResource:
     get:
-      operationId: getLookupData
+      operationId: getAnotherResource
       tags:
-        - getLookupData
-      summary: get lookup data
-      parameters:
-        - name: lookupKey
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: excludeFieldsQuery
-          allowReserved: true
-          required: false
-          in: query
-          schema:
-            type: string
+        - anotherResource
+      summary: gets the resource
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/lookupOptionList'
-        '400':
+                $ref: '#/components/schemas/anotherResource'
+        400:
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /lookup-tables/capabilities:
+  /resourceName:
     get:
-      operationId: getCapabilities
+      operationId: getResourceName
       tags:
-        - getCapabilities
-      summary: get capabilities
+        - resourceName
+      summary: gets the resource
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/capabilities'
-        '400':
+                $ref: '#/components/schemas/resource'
+        400:
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-        '500':
-          description: Internal Server Error
+    post:
+      operationId: createResource
+      tags:
+        - resourceName
+      summary: creates a new record of type resource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/resource'
+      responses:
+        201:
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resource'
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+security:
+  - {}
 components:
   schemas:
-    lookupOptionList:
-      type: array
-      items:
-        $ref: '#/components/schemas/lookupOption'
-    lookupOption:
-      type: object
-      required:
-        - translationCode
-        - value
-      properties:
-        translationCode:
-          type: string
-        value:
-          type: string
-    capabilities:
-      type: array
-      items:
-        type: string
     error:
       type: object
       required:
@@ -96,3 +80,27 @@ components:
       properties:
         message:
           type: string
+    resource:
+      type: object
+      required:
+        - id
+        - name
+        - description
+      properties:
+        id:
+          type: number
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+    anotherResource:
+      type: object
+      required:
+        - kind
+        - isAlive
+      properties:
+        kind:
+          type: string
+        isAlive:
+          type: boolean
