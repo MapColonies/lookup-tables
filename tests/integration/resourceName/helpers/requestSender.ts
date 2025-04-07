@@ -9,8 +9,7 @@ export class LookupTablesRequestSender {
     supertest.agent(this.app).get(`${BASE_URL}/classification`);
     const classification = await supertest.agent(this.app).get(`${BASE_URL}/classification`).set('Content-Type', 'application/json');
     return classification;
-
-  }
+  };
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
     const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/countries`);
