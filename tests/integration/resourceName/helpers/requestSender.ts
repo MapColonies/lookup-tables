@@ -6,11 +6,13 @@ export class LookupTablesRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getClassificationList(): Promise<supertest.Response> {
-    return supertest.agent(this.app).get(`${BASE_URL}/lookupData/classification`).set('Content-Type', 'application/json');
+    await supertest.agent(this.app).get(`${BASE_URL}/classification`);
+    const classification = await supertest.agent(this.app).get(`${BASE_URL}/classification`).set('Content-Type', 'application/json');
+    return classification;
   }
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
-    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/country`);
+    const superSetCall = supertest.agent(this.app).get(`${BASE_URL}/lookupData/countries`);
     if (excludeFieldsQuery != null) {
       void superSetCall.query({ excludeFieldsQuery });
     }

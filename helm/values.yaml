@@ -78,7 +78,6 @@ env:
   responseCompressionEnabled: true
   requestPayloadLimit: 1mb
   gitSslNoVerify: true
-  classifiedRepoUrl: https://github.com/MapColonies/lookup-tables-data
 route:
   enabled: true
   annotations:

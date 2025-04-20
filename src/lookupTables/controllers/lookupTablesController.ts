@@ -16,17 +16,16 @@ export class LookupTablesController {
     @inject(LookupTablesManager) private readonly manager: LookupTablesManager
   ) {}
 
-  public getLookupData: GetLookupDataHandler = (req, res, next) => {
+  public getLookupData: GetLookupDataHandler = async (req, res, next) => {
     let lookupOptionList: ILookupOption[];
     const lookupKey: string = req.params.lookupKey;
     const excludeFields: string[] = req.query.excludeFieldsQuery ? req.query.excludeFieldsQuery.split(',') : [];
 
     try {
-      lookupOptionList = this.manager.getLookupData(lookupKey, excludeFields);
-
+      lookupOptionList = await this.manager.getLookupData(lookupKey, excludeFields);
       return res.status(httpStatus.OK).json(lookupOptionList);
     } catch (error) {
-      this.logger.error({ msg: 'Failed to fetch country list' });
+      this.logger.error({ msg: `Failed to fetch ${lookupKey} list` });
       return next(error);
     }
   };
