@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/MapColonies/lookup-tables/compare/v1.3.0...v1.4.0) (2025-04-23)
+
+
+### Features
+
+* change ILookupOption interface ([67d2f53](https://github.com/MapColonies/lookup-tables/commit/67d2f535a642f2908c20df162dd77140afd1521d))
+* get lists from configmanagenemt or from src/assets ([c084f06](https://github.com/MapColonies/lookup-tables/commit/c084f06df65e8cacaeb7b9d837027e243517847f))
+* no longer taking data from git (repo lookupTablesData) ([5edeaf5](https://github.com/MapColonies/lookup-tables/commit/5edeaf5e242cb230dbc67c41f5e3dacd5804d441))
+* POC to get countries configuration from config managment mechanism ([e3e61bf](https://github.com/MapColonies/lookup-tables/commit/e3e61bf029d6b75a6758a3c04e46fd657a6ffbaf))
+* using new version of pull_request.yaml ([7582d77](https://github.com/MapColonies/lookup-tables/commit/7582d7767cb6efc6f9765c3941ff81e1f3c6d487))
+
+
+### Bug Fixes
+
+* fix integration tests ([ea7479b](https://github.com/MapColonies/lookup-tables/commit/ea7479b11f6689ac7c2d0c1231f07029515d997e))
+* helm artifacts ([414f36f](https://github.com/MapColonies/lookup-tables/commit/414f36f725577e2199b0ae75bdcba43bc7524460))
+* support specific and official routes ([d1f08c2](https://github.com/MapColonies/lookup-tables/commit/d1f08c24082bba841c969c588d18fd097fce84e9))
+
 ## [1.3.0](https://github.com/MapColonies/lookup-tables/compare/v1.2.0...v1.3.0) (2024-11-05)
 
 
