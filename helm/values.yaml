@@ -77,7 +77,6 @@ env:
   logPrettyPrintEnabled: false
   responseCompressionEnabled: true
   requestPayloadLimit: 1mb
-  gitSslNoVerify: true
 route:
   enabled: true
   annotations:
