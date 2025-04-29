@@ -60,6 +60,7 @@ export class LookupTablesManager {
       const response = await requestHandler(process.env.CONFIG_MANAGEMENT_URL as string, 'GET', {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         config_name: configName,
+        version: 'latest',
       });
 
       // eslint-disable-next-line
