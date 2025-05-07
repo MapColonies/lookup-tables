@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/MapColonies/lookup-tables/compare/v1.4.3...v1.4.4) (2025-05-07)
+
+
+### Bug Fixes
+
+* dumb-init ([94f3439](https://github.com/MapColonies/lookup-tables/commit/94f34398a724121589d56f396d2a016e2d5dcbf1))
+
 ### [1.4.3](https://github.com/MapColonies/lookup-tables/compare/v1.4.2...v1.4.3) (2025-05-07)
 
 
