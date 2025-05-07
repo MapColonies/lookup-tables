@@ -17,7 +17,7 @@
     "test": "npm run test:integration && npm run test:unit",
     "prebuild": "npm run clean",
     "build": "tsc --project tsconfig.build.json && npm run assets:copy",
-    "start": "npm run build && cd dist && cross-env CONFIG_MANAGEMENT_ENABLED=false && cross-env CONFIG_MANAGEMENT_URL=<URL>/api/config && node --import ./instrumentation.mjs ./index.js",
+    "start": "npm run build && cd dist && cross-env CONFIG_MANAGEMENT_URL=<URL>/api/config && node --import ./instrumentation.mjs ./index.js",
     "start:dev": "npm run build && cd dist && cross-env CONFIG_OFFLINE_MODE=true  node --enable-source-maps --import ./instrumentation.mjs ./index.js",
     "assets:copy": "copyfiles -f ./config/* ./dist/config && copyfiles -f ./openapi3.yaml ./dist/ && copyfiles ./package.json dist && copyfiles -f ./src/assets/* ./dist/assets",
     "clean": "rimraf dist",

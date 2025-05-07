@@ -18,15 +18,9 @@ export class LookupTablesManager {
     this.logger.debug({ msg: 'get lookup data' });
     const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
     let lookupOptionList: ILookupOption[];
-    if (process.env.CONFIG_MANAGEMENT_ENABLED !== 'true') {
-      try {
-        lookupOptionList = this.readListFromFile(filePath);
-      } catch (error) {
-        throw new Error('Incorrect lookupKey, no data found');
-      }
-    } else {
-      lookupOptionList = await this.getListFromConfigMenegement(lookupKey);
-    }
+
+    lookupOptionList = await this.getListFromConfigMenegement(lookupKey);
+    
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
   }

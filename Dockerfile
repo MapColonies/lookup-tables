@@ -1,5 +1,7 @@
 FROM node:18 as build
 
+RUN apk add dumb-init
+
 WORKDIR /app
 
 COPY ./package*.json ./

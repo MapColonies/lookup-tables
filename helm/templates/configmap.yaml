@@ -8,7 +8,6 @@
   REQUEST_PAYLOAD_LIMIT: {{ .Values.env.requestPayloadLimit | quote }}
   RESPONSE_COMPRESSION_ENABLED: {{ .Values.env.responseCompressionEnabled | quote }}
 {{- end }}
-  CONFIG_MANAGEMENT_ENABLED: {{ $CONFIG_MANAGER_OBJECT.enabled | quote }}
   CONFIG_MANAGEMENT_URL: {{ $CONFIG_MANAGER_OBJECT.url | quote }}
 {{- end -}}
 
