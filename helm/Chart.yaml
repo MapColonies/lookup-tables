@@ -2,8 +2,8 @@ apiVersion: v2
 name: lookup-tables
 description: A Helm chart for lookup tables
 type: application
-version: 1.4.4
-appVersion: 1.4.4
+version: 1.4.5
+appVersion: 1.4.5
 dependencies:
   - name: helm-common
     version: 1.0.1

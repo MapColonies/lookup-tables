@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.5](https://github.com/MapColonies/lookup-tables/compare/v1.4.4...v1.4.5) (2025-05-07)
+
+
+### Bug Fixes
+
+* apk does not run on node18 ([93f3a68](https://github.com/MapColonies/lookup-tables/commit/93f3a6873b497f54c7d7835b74705ac6912cca04))
+
 ### [1.4.4](https://github.com/MapColonies/lookup-tables/compare/v1.4.3...v1.4.4) (2025-05-07)
 
 
