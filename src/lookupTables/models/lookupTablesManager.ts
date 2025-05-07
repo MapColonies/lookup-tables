@@ -19,7 +19,7 @@ export class LookupTablesManager {
     const filePath = path.join(ASSETS_FOLDER_PATH, `${lookupKey}${JSON_EXTENSION}`);
     let lookupOptionList: ILookupOption[];
 
-    lookupOptionList = await this.getListFromConfigMenegement(lookupKey);
+    lookupOptionList = await this.getListFromConfigManagement(lookupKey);
     
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
@@ -48,7 +48,7 @@ export class LookupTablesManager {
     return list;
   }
 
-  private readonly getListFromConfigMenegement = async (lookupKey: string): Promise<ILookupOption[]> => {
+  private readonly getListFromConfigManagement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
       const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
       const response = await requestHandler(process.env.CONFIG_MANAGEMENT_URL as string, 'GET', {
