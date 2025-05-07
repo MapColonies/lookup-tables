@@ -30,11 +30,11 @@ export class LookupTablesController {
     }
   };
 
-  public getCapabilities: GetCapabilitiesHandler = (req, res, next) => {
+  public getCapabilities: GetCapabilitiesHandler = async (req, res, next) => {
     let capabilities: string[];
 
     try {
-      capabilities = this.manager.getCapabilities();
+      capabilities = await this.manager.getCapabilities();
       return res.status(httpStatus.OK).json(capabilities);
     } catch (error) {
       this.logger.error({ msg: 'Failed to fetch country list' });

@@ -1,7 +1,4 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
@@ -16,7 +13,11 @@
       "cwd": "${workspaceFolder}/dist",
       "skipFiles": ["${workspaceFolder}/node_modules/**/*.js", "<node_internals>/**/*.js"],
       "outFiles": ["${workspaceFolder}/dist/**/*.js", "!**/node_modules/**"],
-      "program": "${workspaceFolder}/src/index.ts",
+      "program": "${workspaceFolder}/dist/index.js",
+      "args": [
+        "--import",
+        "./instrumentation.mjs"
+      ],
       "env": {
         "NODE_ENV": "development",
         "SERVER_PORT": "8080",
@@ -26,9 +27,10 @@
         "TELEMETRY_TRACING_ENABLED": "false",
         "TELEMETRY_METRICS_ENABLED": "false",
         "TELEMETRY_TRACING_URL": "http://localhost:55681/v1/trace",
-        "TELEMETRY_METRICS_URL": "http://localhost:55681/v1/metrics"
-        // "OPENAPI_FILE_PATH": "./openapi3.yaml"
-      }
+        "TELEMETRY_METRICS_URL": "http://localhost:55681/v1/metrics",
+        "CONFIG_MANAGEMENT_URL": "https://infra-config-config-server-manual-route-infra-services.apps.j1lk3njp.eastus.aroapp.io"
+      },
+      "runtimeExecutable": "~/.nvm/versions/node/v20.19.1/bin/node"
     }
   ]
 }
