@@ -41,13 +41,6 @@ export class LookupTablesManager {
     return lookupOptionList;
   }
 
-  private readListFromFile<T>(filePath: string): T[] {
-    this.logger.debug({ msg: 'Try to read file', filePath });
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const list: T[] = JSON.parse(fileContent) as T[];
-    return list;
-  }
-
   private readonly getListFromConfigManagement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
       const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
