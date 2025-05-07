@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/MapColonies/lookup-tables/compare/v1.4.1...v1.4.2) (2025-05-07)
+
+
+### Bug Fixes
+
+* always took latest config version ([dffef1c](https://github.com/MapColonies/lookup-tables/commit/dffef1c3644a81a711de38faadaa26f97c1f2f7c))
+* missing dev dependency cross-env ([0fd4039](https://github.com/MapColonies/lookup-tables/commit/0fd4039d73718e41602e00ca987b69eb8e80447a))
+* openapi ([568b216](https://github.com/MapColonies/lookup-tables/commit/568b2163d5d499c377b1cef14a9c4f0128c2a921))
+
 ### [1.4.1](https://github.com/MapColonies/lookup-tables/compare/v1.4.0...v1.4.1) (2025-04-23)
 
 
