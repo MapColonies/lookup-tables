@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/MapColonies/lookup-tables/compare/v1.4.6...v1.5.0) (2025-07-08)
+
+
+### Features
+
+* changed request to better work with new config-server API ([9d874e7](https://github.com/MapColonies/lookup-tables/commit/9d874e74c83eaf73a90d685029673d6d67677c1c))
+
+
+### Bug Fixes
+
+* error 400 after infra changes ([b6701ca](https://github.com/MapColonies/lookup-tables/commit/b6701ca8bb62c0db61e051e1e85765a1ca797a29))
+
 ### [1.4.6](https://github.com/MapColonies/lookup-tables/compare/v1.4.5...v1.4.6) (2025-05-07)
 
 

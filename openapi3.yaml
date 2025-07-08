@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: lookup-tables
   description: Service which serve secret list data like countries, classification, etc.
-  version: 1.4.6
+  version: 1.5.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
