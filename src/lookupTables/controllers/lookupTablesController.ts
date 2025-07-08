@@ -3,7 +3,7 @@ import { RequestHandler } from 'express';
 import httpStatus from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
-import { ILookupOption } from '../../lookup-models';
+import { ILookupOption } from '../../lookupModels';
 import { LookupTablesManager } from '../models/lookupTablesManager';
 
 type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeFieldsQuery: string }>;
