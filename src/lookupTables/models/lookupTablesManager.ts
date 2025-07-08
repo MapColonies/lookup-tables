@@ -5,6 +5,15 @@ import { SERVICES } from '../../common/constants';
 import { ILookupOption } from '../../lookup-models';
 import { requestHandler } from '../../utils';
 
+const keyToSchemaIdMapKeys = new Map<string, string>(
+  Object.entries({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    'hot-areas': 'https://mapcolonies.com/common/lookupTablesData/hotAreas/v1',
+    countries: 'https://mapcolonies.com/common/lookupTablesData/countries/v1',
+    classification: 'https://mapcolonies.com/common/lookupTablesData/classification/v1',
+  })
+);
+
 @injectable()
 export class LookupTablesManager {
   public constructor(@inject(SERVICES.LOGGER) private readonly logger: Logger) {}
@@ -43,11 +52,14 @@ export class LookupTablesManager {
   private readonly getListFromConfigManagement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
       const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
-      const response = await requestHandler(`${process.env.CONFIG_MANAGEMENT_URL}/api/config`, 'GET', {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
+
+      /* eslint-disable @typescript-eslint/naming-convention */
+      const response = await requestHandler(`${process.env.CONFIG_MANAGEMENT_URL}/config`, 'GET', {
         config_name: configName,
+        schema_id: keyToSchemaIdMapKeys.get(lookupKey),
         version: 'latest',
       });
+      /* eslint-enable @typescript-eslint/naming-convention */
 
       // eslint-disable-next-line
       return response.data.configs.find((configuration: any) => configuration.configName === configName).config[lookupKey] as ILookupOption[];
