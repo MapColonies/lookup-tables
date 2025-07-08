@@ -54,7 +54,7 @@ export class LookupTablesManager {
       const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
 
       /* eslint-disable @typescript-eslint/naming-convention */
-      const response = await requestHandler(`${process.env.CONFIG_MANAGEMENT_URL}/config`, 'GET', {
+      const response = await requestHandler(`${process.env.CONFIG_MANAGEMENT_URL}/api/config`, 'GET', {
         config_name: configName,
         schema_id: keyToSchemaIdMapKeys.get(lookupKey),
         version: 'latest',
