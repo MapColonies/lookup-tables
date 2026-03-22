@@ -6,6 +6,10 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
+servers:
+  - url: /
+    description: relative path
+security: []
 paths:
   /lookup-tables/lookupData/{lookupKey}:
     get:

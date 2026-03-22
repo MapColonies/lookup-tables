@@ -6,8 +6,7 @@ export class LookupTablesRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getClassificationList(): Promise<supertest.Response> {
-    await supertest.agent(this.app).get(`${BASE_URL}/classification`);
-    const classification = await supertest.agent(this.app).get(`${BASE_URL}/classification`).set('Content-Type', 'application/json');
+    const classification = await supertest.agent(this.app).get(`${BASE_URL}/lookupData/classification`).set('Content-Type', 'application/json');
     return classification;
   }
 
