@@ -11,7 +11,7 @@ tsconfig.json
 node_modules
 *.html
 coverage
-helm
 reports
+helm
 .vscode/settings.json
 schemas/*.json

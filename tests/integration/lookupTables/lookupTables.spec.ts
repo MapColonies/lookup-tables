@@ -6,7 +6,12 @@ import { getApp } from '../../../src/app';
 import { SERVICES } from '../../../src/common/constants';
 import { initConfig } from '../../../src/common/config';
 import { ILookupOption } from '../../../src/lookup-models';
+import { requestHandler } from '../../../src/utils';
 import { LookupTablesRequestSender } from './helpers/requestSender';
+
+jest.mock('../../../src/utils', () => ({
+  requestHandler: jest.fn(),
+}));
 
 describe('lookupTables', function () {
   let requestSender: LookupTablesRequestSender;
@@ -16,6 +21,37 @@ describe('lookupTables', function () {
   });
 
   beforeEach(async function () {
+    process.env.CONFIG_MANAGEMENT_URL = 'http://mocked-config-management';
+
+    jest.mocked(requestHandler).mockImplementation(async (_url: string, _method: string, params: Record<string, string>) => {
+      const configName = params.config_name;
+
+      /* eslint-disable */
+      const configByName: Partial<Record<string, Record<string, ILookupOption[]>>> = {
+        classification: {
+          classification: [{ value: 'U', translationCode: 'classification.unclassified' }],
+        },
+        countries: {
+          countries: [{ value: 'ISR', translationCode: 'country.isr', translation: [] }],
+        },
+        'hot-areas': {
+          hotAreas: [{ value: 'center', translationCode: 'hotArea.center' }],
+        },
+      };
+      /* eslint-enable */
+
+      const config = configByName[configName];
+      if (config == null) {
+        throw new Error(`Unknown config requested in test: ${configName}`);
+      }
+
+      return Promise.resolve({
+        data: {
+          configs: [{ configName, config }],
+        },
+      } as never);
+    });
+
     const [app] = await getApp({
       override: [
         { token: SERVICES.LOGGER, provider: { useValue: jsLogger({ enabled: false }) } },

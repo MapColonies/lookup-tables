@@ -20,21 +20,20 @@ export class LookupTablesManager {
 
   public async getLookupData(lookupKey: string, excludeFields: string[] = []): Promise<ILookupOption[]> {
     this.logger.debug({ msg: 'get lookup tables data' });
-    let lookupOptionList: ILookupOption[];
-    lookupOptionList = await this.getListFromConfigManagement(lookupKey);
+    const lookupOptionList = await this.getListFromConfigManagement(lookupKey);
     const filteredLookupOptions: ILookupOption[] = this.filterLookupOption(lookupOptionList, excludeFields);
     return filteredLookupOptions;
   }
 
-  public async getCapabilities(): Promise<string[]> {
+  public getCapabilities(): string[] {
     this.logger.debug({ msg: 'get lookup tables capabilities list' });
     try {
-      return Array.from(keyToSchemaIdMapKeys.keys()).map(key => key.replace(/-([a-z])/g, g => g[1].toUpperCase()));
+      return Array.from(keyToSchemaIdMapKeys.keys()).map((key) => key.replace(/-([a-z])/g, (g) => g[1].toUpperCase()));
     } catch (error) {
       this.logger.error(error);
       throw error;
     }
-  };
+  }
 
   private filterLookupOption(lookupOptionList: ILookupOption[], excludeFields: string[]): ILookupOption[] {
     for (const option of lookupOptionList) {
@@ -48,16 +47,21 @@ export class LookupTablesManager {
   private readonly getListFromConfigManagement = async (lookupKey: string): Promise<ILookupOption[]> => {
     try {
       const configName = lookupKey === 'hotAreas' ? 'hot-areas' : lookupKey;
+      const configManagementUrl = process.env.CONFIG_MANAGEMENT_URL;
 
-      /* eslint-disable @typescript-eslint/naming-convention */
-      const response = await requestHandler(`${process.env.CONFIG_MANAGEMENT_URL}/api/config`, 'GET', {
+      if (configManagementUrl == null) {
+        throw new Error('CONFIG_MANAGEMENT_URL is not defined');
+      }
+
+      /* eslint-disable */
+      const response = await requestHandler(`${configManagementUrl}/api/config`, 'GET', {
         config_name: configName,
         schema_id: keyToSchemaIdMapKeys.get(lookupKey),
         version: 'latest',
       });
-      /* eslint-enable @typescript-eslint/naming-convention */
 
       return response.data.configs.find((configuration: any) => configuration.configName === configName).config[lookupKey] as ILookupOption[];
+      /* eslint-enable */
     } catch (error) {
       this.logger.error(error);
       throw error;
