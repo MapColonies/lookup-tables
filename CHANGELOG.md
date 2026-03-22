@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/MapColonies/lookup-tables/compare/v1.5.1...v1.6.0) (2026-03-22)
+
+
+### Features
+
+* upgrade to node 24 ([d101ab9](https://github.com/MapColonies/lookup-tables/commit/d101ab9c331e7bfafcf281697f7bf33b131f087c))
+* upgrade to node 24 ([ae07c65](https://github.com/MapColonies/lookup-tables/commit/ae07c657fc3150f7bf5c1c33da398fd38719bb29))
+
 ## [1.5.1](https://github.com/MapColonies/lookup-tables/compare/v1.5.0...v1.5.1) (2025-07-31)
 
 
