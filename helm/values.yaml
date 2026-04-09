@@ -12,6 +12,10 @@ persistence:
 # ----------- command/debug -----------
 diagnosticMode:
   enabled: false
+  # command:
+  #   - sleep
+  # args:
+  #   - infinity
 # --------- MAIN_OBJECT_BLOCK ---------
 configValues:
   deploymentAnnotations:
@@ -33,8 +37,8 @@ configValues:
     enabled: false
   # ----------- containers ------------
   image:
-    repository: lookup-tables
-    tag: v1.1.9
+    repository: common/lookup-tables
+    tag: v1.0.0
     pullPolicy: Always
     debug: false
   containerSecurityContext:
