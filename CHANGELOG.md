@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.1](https://github.com/MapColonies/lookup-tables/compare/v1.6.0...v1.6.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* values ([cafeda3](https://github.com/MapColonies/lookup-tables/commit/cafeda353fc64551a1e15a24080aa7ffefe6a6af))
+
 ## [1.6.0](https://github.com/MapColonies/lookup-tables/compare/v1.5.1...v1.6.0) (2026-03-22)
 
 
