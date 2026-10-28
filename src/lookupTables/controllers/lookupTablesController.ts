@@ -3,10 +3,10 @@ import { RequestHandler } from 'express';
 import httpStatus from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
 import { SERVICES } from '../../common/constants';
-import { ILookupOption } from '../../lookup-models';
+import { ILookupOption } from '../../lookupModels';
 import { LookupTablesManager } from '../models/lookupTablesManager';
 
-type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeFieldsQuery: string }>;
+type GetLookupDataHandler = RequestHandler<{ lookupKey: string }, ILookupOption[], undefined, { excludeFieldsQuery?: string }>;
 type GetCapabilitiesHandler = RequestHandler<undefined, string[]>;
 
 @injectable()
@@ -17,27 +17,24 @@ export class LookupTablesController {
   ) {}
 
   public getLookupData: GetLookupDataHandler = async (req, res, next) => {
-    let lookupOptionList: ILookupOption[];
-    const lookupKey: string = req.params.lookupKey;
-    const excludeFields: string[] = req.query.excludeFieldsQuery ? req.query.excludeFieldsQuery.split(',') : [];
+    const { lookupKey } = req.params;
+    const excludeFields = req.query.excludeFieldsQuery !== undefined ? req.query.excludeFieldsQuery.split(',') : [];
 
     try {
-      lookupOptionList = await this.manager.getLookupData(lookupKey, excludeFields);
+      const lookupOptionList = await this.manager.getLookupData(lookupKey, excludeFields);
       return res.status(httpStatus.OK).json(lookupOptionList);
     } catch (error) {
-      this.logger.error({ msg: `Failed to fetch ${lookupKey} list` });
+      this.logger.error({ msg: `Failed to fetch ${lookupKey} list`, error });
       return next(error);
     }
   };
 
   public getCapabilities: GetCapabilitiesHandler = (req, res, next) => {
-    let capabilities: string[];
-
     try {
-      capabilities = this.manager.getCapabilities();
+      const capabilities = this.manager.getCapabilities();
       return res.status(httpStatus.OK).json(capabilities);
     } catch (error) {
-      this.logger.error({ msg: 'Failed to fetch country list' });
+      this.logger.error({ msg: 'Failed to fetch capabilities list', error });
       return next(error);
     }
   };
