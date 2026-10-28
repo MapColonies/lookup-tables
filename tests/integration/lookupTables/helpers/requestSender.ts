@@ -6,8 +6,7 @@ export class LookupTablesRequestSender {
   public constructor(private readonly app: Express.Application) {}
 
   public async getClassificationList(): Promise<supertest.Response> {
-    const classification = await supertest.agent(this.app).get(`${BASE_URL}/lookupData/classification`).set('Content-Type', 'application/json');
-    return classification;
+    return supertest.agent(this.app).get(`${BASE_URL}/lookupData/classification`).set('Content-Type', 'application/json');
   }
 
   public async getCountryList(excludeFieldsQuery?: string): Promise<supertest.Response> {
@@ -15,7 +14,6 @@ export class LookupTablesRequestSender {
     if (excludeFieldsQuery != null) {
       void superSetCall.query({ excludeFieldsQuery });
     }
-
     return superSetCall.set('Content-Type', 'application/json');
   }
 
