@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.4](https://github.com/MapColonies/lookup-tables/compare/v1.6.3...v1.6.4) (2026-10-28)
+
+
+### Bug Fixes
+
+* bump helm-common version ([85d105d](https://github.com/MapColonies/lookup-tables/commit/85d105d41aedde86dbecf4cb9112d58699dc04e0))
+* bump helm-common version ([5e008a2](https://github.com/MapColonies/lookup-tables/commit/5e008a2fb2f4ca0fca64ceeea14c41ec70392680))
+
 ## [1.6.3](https://github.com/MapColonies/lookup-tables/compare/v1.6.2...v1.6.3) (2026-10-28)
 
 
